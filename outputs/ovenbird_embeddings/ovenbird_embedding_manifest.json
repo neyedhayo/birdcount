@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-11-17T09:54:43.506456+00:00",
+  "source_csv": "OvenbirdIndividualAnnotations.csv",
+  "source_csv_sha256": "eff9255eb5a79c2807037c631511b3d7f5d6e54329a18be893f6e4b0f6df7dc3",
+  "recordings_directory": "Recordings",
+  "checkpoint": "full_2025-04-10T11:02:36.028451_best.pth",
+  "checkpoint_sha256": "08f5ae9cf3106dd663e57a90709829026c79e80ea3b6d7ade09a380f514f760a",
+  "device": "mps",
+  "batch_size": 64,
+  "num_workers": 0,
+  "window_duration_seconds": 2.0,
+  "window_rule": "center detection_time + tag_duration/2; clamp to recording bounds",
+  "source_rows": 1174,
+  "embedded_rows": 1149,
+  "missing_audio_rows": 25,
+  "missing_recording_ids": [
+    220800,
+    220818,
+    220840,
+    220936,
+    220960,
+    233191,
+    233214,
+    233219
+  ],
+  "boundary_adjusted_rows": 54,
+  "embedding_shape": [
+    1149,
+    512
+  ],
+  "embedding_dtype": "float32",
+  "embeddings_file": "ovenbird_embeddings.npy",
+  "metadata_file": "ovenbird_embedding_metadata.csv",
+  "versions": {
+    "python": "3.11.15",
+    "numpy": "2.2.6",
+    "pandas": "2.3.1",
+    "torch": "2.7.1",
+    "torchvision": "0.22.1",
+    "opensoundscape": "0.12.1"
+  }
+}

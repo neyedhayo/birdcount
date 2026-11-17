@@ -1,0 +1,10 @@
+{
+  "status": "candidate_count_available",
+  "candidate_individual_count": 1,
+  "detected_song_events": 6,
+  "clustered_song_events": 6,
+  "unclustered_song_events": 0,
+  "min_cluster_size": 5,
+  "interpretation": "Count represents stable acoustic clusters with repeated songs; it is not a guaranteed census of all birds present.",
+  "audio": "/Users/yomaugbovo/Downloads/199823.wav"
+}
