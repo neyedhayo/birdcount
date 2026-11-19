@@ -15,6 +15,14 @@ MEDIA = HERE / "media"
 EXPERIMENT = ROOT / "outputs/individual_counting_experiment"
 EMBEDDINGS = ROOT / "outputs/ovenbird_embeddings"
 SAMPLE_RATE = 24_000
+METHOD_LABELS = {
+    "agglomerative_average": "Average linkage",
+    "cosine_adjacency": "Cosine graph",
+    "agglomerative_complete": "Complete linkage",
+    "pairwise_mlp": "Pairwise MLP",
+    "hdbscan": "HDBSCAN",
+    "dpgmm": "DP-GMM",
+}
 
 
 def read_samples(path):
@@ -94,6 +102,14 @@ def main():
     counts = pd.crosstab(test["true_count"], test["predicted_count"])
     count_range = list(range(1, max(max(counts.index), max(counts.columns)) + 1))
     count_matrix = counts.reindex(index=count_range, columns=count_range, fill_value=0)
+    # Match the representation selection used in the repo's held-out results table.
+    inductive = pd.read_csv(EXPERIMENT / "test_summary_results.csv").query(
+        "partition == 'test' and evaluation_regime == 'inductive' and method in @METHOD_LABELS"
+    )
+    best_representations = inductive.groupby("method")["hungarian_accuracy"].idxmax()
+    ranked_methods = inductive.loc[best_representations].sort_values(
+        "count_accuracy", ascending=False
+    )
     data = {
         "fieldWave": waveform(samples, 600),
         "detectedCalls": detected_calls,
@@ -102,6 +118,14 @@ def main():
         "merges": linkage(vectors, method="average", metric="cosine").round(6).tolist(),
         "sweep": sorted(sweep),
         "countMatrix": count_matrix.to_numpy().tolist(),
+        "methodAccuracy": [
+            {
+                "label": METHOD_LABELS[row.method],
+                "accuracy": row.count_accuracy,
+                "recordings": int(row.n_recordings),
+            }
+            for row in ranked_methods.itertuples()
+        ],
     }
     contents = json.dumps(data, separators=(",", ":"))
     (HERE / "data.js").write_text(

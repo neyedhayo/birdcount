@@ -244,6 +244,32 @@ function renderDendrogram(stage) {
   }
 }
 
+function drawMethodAccuracy() {
+  const ranking = get("accuracy-ranking");
+  const methods = birdcountData.methodAccuracy;
+  const sampleSizes = new Set(methods.map(method => method.recordings));
+  const sharedSample = sampleSizes.size === 1;
+
+  for (const { label, accuracy, recordings } of methods) {
+    const row = html("li");
+    const track = html("span", "accuracy-track");
+    const fill = html("span", "accuracy-fill");
+    const percentage = accuracy * 100;
+    fill.style.width = `${percentage}%`;
+    track.setAttribute("aria-hidden", "true");
+    track.append(fill);
+    row.append(
+      html("span", "accuracy-method", sharedSample ? label : `${label} (n = ${recordings})`),
+      track,
+      html("span", "accuracy-value", `${percentage.toFixed(1)}%`),
+    );
+    ranking.append(row);
+  }
+  get("accuracy-sample-size").textContent = sharedSample
+    ? `${methods[0].recordings} held-out recordings`
+    : "Held-out recordings";
+}
+
 function drawMatrix() {
   const matrix = birdcountData.countMatrix;
   const table = html("table");
@@ -277,6 +303,7 @@ drawEmbeddings();
 drawGroups();
 drawSweep();
 renderDendrogram(0);
+drawMethodAccuracy();
 drawMatrix();
 
 const slides = [...document.querySelectorAll(".slide")];

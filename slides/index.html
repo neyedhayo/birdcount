@@ -163,7 +163,6 @@
         <aside class="notes">
           <p>We tried average and complete linkage using cosine distance, a cosine-similarity graph, an MLP that scores whether pairs of calls came from the same bird, HDBSCAN, and a Dirichlet-process Gaussian mixture. The two graph approaches use connected components. HDBSCAN noise events count as singletons in this benchmark.</p>
           <p>Three inductive representations enter the main comparison. PCA is fitted on development data. Five- and sixteen-dimensional t-SNE are exploratory, fitted jointly, and excluded from the primary benchmark. The comparison also includes an always-one-bird baseline.</p>
-          <p>On the 97 held-out recordings, the best inductive representation for each method returned the following exact count accuracies. Average linkage 77.3%, cosine graph 73.2%, complete linkage 71.1%, pairwise MLP 63.9%, HDBSCAN 45.4%, Dirichlet-process mixture 1.0%. Configurations were selected using development assignment accuracy first.</p>
         </aside>
       </section>
 
@@ -235,15 +234,35 @@
             </div>
             <p class="baseline">52.6% <span>one-bird baseline</span></p>
           </div>
-          <div class="result-details">
-            <div><span>Count MAE</span><b>0.247</b></div>
-            <div><span>Mean signed error</span><b>−0.062</b></div>
-            <div><span>Matched accuracy</span><b>89.4%</b></div>
-          </div>
+          <table class="result-details" aria-label="One-bird baseline and average linkage metrics">
+            <thead>
+              <tr><td></td><th scope="col">One-bird baseline</th><th scope="col">Average linkage</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Count MAE</th><td>0.619</td><td>0.247</td></tr>
+              <tr><th scope="row">Mean signed error</th><td>−0.619</td><td>−0.062</td></tr>
+              <tr><th scope="row">Matched accuracy</th><td>79.9%</td><td>89.4%</td></tr>
+            </tbody>
+          </table>
         </div>
         <p class="footline">97 held-out recordings · 512-D embeddings</p>
         <aside class="notes">
           <p>With average linkage and a 0.25 cosine-distance threshold, exact count accuracy rose from 52.6% to 77.3%, a gain of 24.7 percentage points. Count MAE fell from 0.619 to 0.247 birds per recording, roughly 60%. Mean signed error moved from −0.619 to −0.062 birds, and Hungarian-matched assignment accuracy increased from 79.9% to 89.4%. These results use the repo’s current annotation-based benchmark.</p>
+        </aside>
+      </section>
+
+      <section class="slide method-comparison" id="method-accuracy" aria-labelledby="title-method-accuracy">
+        <h2 class="display" id="title-method-accuracy">Exact-count accuracy<br> <em>by method</em></h2>
+        <div class="accuracy-chart">
+          <div class="accuracy-baseline">
+            <span class="accuracy-baseline-label">52.6% one-bird baseline</span>
+          </div>
+          <ol class="accuracy-ranking" id="accuracy-ranking" aria-label="Methods ranked by exact-count accuracy"></ol>
+        </div>
+        <p class="label" id="accuracy-sample-size"></p>
+        <aside class="notes">
+          <p>Each bar shows the percentage of held-out recordings where the method predicted the annotated number of birds. For each method, we show the inductive representation with the highest Hungarian-matched assignment accuracy on the held-out set. Hyperparameters for each method and representation were tuned on development data.</p>
+          <p>DP-GMM is the Dirichlet-process Gaussian mixture model.</p>
         </aside>
       </section>
 
