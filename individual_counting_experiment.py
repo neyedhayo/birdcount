@@ -220,6 +220,7 @@ def evaluate_configuration(metadata, features, groups, label_function):
                 "n_calls": len(indices),
                 "true_count": true_count,
                 "predicted_count": predicted_count,
+                "signed_error": predicted_count - true_count,
                 "absolute_error": abs(predicted_count - true_count),
                 "exact_count": predicted_count == true_count,
                 "hungarian_accuracy": hungarian_accuracy(y_true, y_pred),
@@ -234,6 +235,7 @@ def summarize_recording_results(recording_results):
         {
             "n_recordings": len(recording_results),
             "count_accuracy": recording_results["exact_count"].mean(),
+            "mean_signed_error": recording_results["signed_error"].mean(),
             "count_mae": recording_results["absolute_error"].mean(),
             "hungarian_accuracy": recording_results["hungarian_accuracy"].mean(),
         }

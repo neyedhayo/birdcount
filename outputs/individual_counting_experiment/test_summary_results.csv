@@ -1,31 +1,31 @@
-partition,representation,evaluation_regime,method,parameters,n_recordings,count_accuracy,count_mae,hungarian_accuracy
-test,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.8}",97.0,0.7319587628865979,0.3711340206185567,0.8677753231876942
-test,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",97.0,0.7731958762886598,0.24742268041237114,0.8944195266360214
-test,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",97.0,0.711340206185567,0.30927835051546393,0.8711537317207421
-test,embedding_512,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.4020618556701031,0.8247422680412371,0.7341615715327057
-test,embedding_512,inductive,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.010309278350515464,2.9278350515463916,0.38656223501584325
-test,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.95}",97.0,0.5670103092783505,0.5670103092783505,0.8096826140640574
-test,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.5}",97.0,0.7319587628865979,0.31958762886597936,0.8641168682405794
-test,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",97.0,0.711340206185567,0.30927835051546393,0.8735718748605348
-test,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",97.0,0.6185567010309279,0.4329896907216495,0.8636144210886479
-test,pca_16,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.4536082474226804,0.7422680412371134,0.7583679207390548
-test,pca_16,inductive,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.010309278350515464,2.752577319587629,0.4077051814165217
-test,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",97.0,0.6185567010309279,0.4742268041237113,0.8337770190862974
-test,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.5}",97.0,0.6701030927835051,0.38144329896907214,0.863171851058449
-test,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",97.0,0.6185567010309279,0.422680412371134,0.8633035063447435
-test,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",97.0,0.5876288659793815,0.4948453608247423,0.8513656446646137
-test,pca_64,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.44329896907216493,0.7628865979381443,0.7477600005950521
-test,pca_64,inductive,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.010309278350515464,2.9278350515463916,0.38656223501584325
-test,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",97.0,0.6391752577319587,0.41237113402061853,0.8596524895493969
-test,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.6}",97.0,0.5979381443298969,0.4742268041237113,0.8402162270718972
-test,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",97.0,0.6597938144329897,0.3711340206185567,0.8536435786435786
-test,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",97.0,0.6597938144329897,0.36082474226804123,0.8581406852025409
-test,tsne_5,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.44329896907216493,0.7628865979381443,0.7421203939245177
-test,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.16494845360824742,1.3402061855670102,0.5881677600749766
-test,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.5}",97.0,0.5670103092783505,0.5360824742268041,0.8202726826438167
-test,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.5}",97.0,0.4742268041237113,0.7319587628865979,0.7689062941640262
-test,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",97.0,0.3711340206185567,1.0515463917525774,0.7434042189196828
-test,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",97.0,0.32989690721649484,1.1546391752577319,0.721071540143705
-test,tsne_16,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.31958762886597936,0.9690721649484536,0.679497850374139
-test,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.010309278350515464,2.9278350515463916,0.38656223501584325
-test,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.55}",97.0,0.6185567010309279,0.4948453608247423,0.8241230419065472
+partition,representation,evaluation_regime,method,parameters,n_recordings,count_accuracy,mean_signed_error,count_mae,hungarian_accuracy
+test,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.8}",97.0,0.7319587628865979,-0.08247422680412371,0.3711340206185567,0.8677753231876942
+test,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",97.0,0.7731958762886598,-0.061855670103092786,0.24742268041237114,0.8944195266360214
+test,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",97.0,0.711340206185567,-0.2268041237113402,0.30927835051546393,0.8711537317207421
+test,embedding_512,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.4020618556701031,0.35051546391752575,0.8247422680412371,0.7341615715327057
+test,embedding_512,inductive,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.010309278350515464,2.9278350515463916,2.9278350515463916,0.38656223501584325
+test,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.95}",97.0,0.5670103092783505,0.25773195876288657,0.5670103092783505,0.8096826140640574
+test,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.5}",97.0,0.7319587628865979,-0.09278350515463918,0.31958762886597936,0.8641168682405794
+test,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",97.0,0.711340206185567,0.16494845360824742,0.30927835051546393,0.8735718748605348
+test,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",97.0,0.6185567010309279,0.35051546391752575,0.4329896907216495,0.8636144210886479
+test,pca_16,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.4536082474226804,0.3917525773195876,0.7422680412371134,0.7583679207390548
+test,pca_16,inductive,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.010309278350515464,2.752577319587629,2.752577319587629,0.4077051814165217
+test,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",97.0,0.6185567010309279,-0.41237113402061853,0.4742268041237113,0.8337770190862974
+test,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.5}",97.0,0.6701030927835051,0.030927835051546393,0.38144329896907214,0.863171851058449
+test,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",97.0,0.6185567010309279,0.29896907216494845,0.422680412371134,0.8633035063447435
+test,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",97.0,0.5876288659793815,0.4536082474226804,0.4948453608247423,0.8513656446646137
+test,pca_64,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.44329896907216493,0.32989690721649484,0.7628865979381443,0.7477600005950521
+test,pca_64,inductive,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.010309278350515464,2.9278350515463916,2.9278350515463916,0.38656223501584325
+test,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",97.0,0.6391752577319587,-0.16494845360824742,0.41237113402061853,0.8596524895493969
+test,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.6}",97.0,0.5979381443298969,0.08247422680412371,0.4742268041237113,0.8402162270718972
+test,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",97.0,0.6597938144329897,0.14432989690721648,0.3711340206185567,0.8536435786435786
+test,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",97.0,0.6597938144329897,0.25773195876288657,0.36082474226804123,0.8581406852025409
+test,tsne_5,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.44329896907216493,0.5567010309278351,0.7628865979381443,0.7421203939245177
+test,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.16494845360824742,1.3195876288659794,1.3402061855670102,0.5881677600749766
+test,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.5}",97.0,0.5670103092783505,0.041237113402061855,0.5360824742268041,0.8202726826438167
+test,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.5}",97.0,0.4742268041237113,0.6082474226804123,0.7319587628865979,0.7689062941640262
+test,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",97.0,0.3711340206185567,1.0515463917525774,1.0515463917525774,0.7434042189196828
+test,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",97.0,0.32989690721649484,1.1546391752577319,1.1546391752577319,0.721071540143705
+test,tsne_16,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",97.0,0.31958762886597936,0.30927835051546393,0.9690721649484536,0.679497850374139
+test,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.01}",97.0,0.010309278350515464,2.9278350515463916,2.9278350515463916,0.38656223501584325
+test,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.55}",97.0,0.6185567010309279,-0.061855670103092786,0.4948453608247423,0.8241230419065472

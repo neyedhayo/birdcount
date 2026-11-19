@@ -1,231 +1,231 @@
-partition,representation,evaluation_regime,method,parameters,n_recordings,count_accuracy,count_mae,hungarian_accuracy
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.5343511450381679,0.648854961832061,0.7948756836663626
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.5419847328244275,0.6412213740458015,0.7974202129284491
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.5419847328244275,0.6335877862595419,0.7985107254693434
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.5954198473282443,0.5725190839694656,0.8183580537136181
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.6030534351145038,0.549618320610687,0.8209091921426193
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.648854961832061,0.4580152671755725,0.8402462576930234
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.6717557251908397,0.3969465648854962,0.8502840994102544
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.6106870229007634,0.4580152671755725,0.8279023028219492
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.5114503816793893,0.8091603053435115,0.779081784917462
-development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.26717557251908397,1.7251908396946565,0.6478427045924033
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.2595419847328244,1.8625954198473282,0.6316604347841792
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.44274809160305345,0.9694656488549618,0.7665293391488651
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.6106870229007634,0.5190839694656488,0.8310857182191052
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.6641221374045801,0.3816793893129771,0.8582514066443355
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.7175572519083969,0.2900763358778626,0.8822426825440084
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.7022900763358778,0.3511450381679389,0.8624865492081241
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.6183206106870229,0.46564885496183206,0.8388073869793434
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.5954198473282443,0.5419847328244275,0.8217076504139581
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.549618320610687,0.6183206106870229,0.802443179783477
-development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.5343511450381679,0.6412213740458015,0.7959661962072568
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.21374045801526717,1.9465648854961832,0.6165003972858534
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.40458015267175573,1.0534351145038168,0.7572126313488307
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.5648854961832062,0.6106870229007634,0.8215152989058172
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.6335877862595419,0.4580152671755725,0.8503817317899279
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.6793893129770993,0.3435114503816794,0.8654124389962076
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.6946564885496184,0.31297709923664124,0.8789438821078033
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.7099236641221374,0.2900763358778626,0.8804584828590453
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.6641221374045801,0.37404580152671757,0.8554898908956762
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.6412213740458015,0.4351145038167939,0.8453141118066791
-development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.5877862595419847,0.5419847328244275,0.8166670591138248
-development,embedding_512,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.3893129770992366,0.8931297709923665,0.7268140167497339
-development,embedding_512,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.3893129770992366,0.8931297709923665,0.7268140167497339
-development,embedding_512,inductive,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,embedding_512,inductive,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,embedding_512,inductive,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,embedding_512,inductive,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.7709923664122137,0.2595419847328244,0.9187415392517844
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.7786259541984732,0.25190839694656486,0.9210316155876623
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.7862595419847328,0.24427480916030533,0.924848409480792
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.7938931297709924,0.22900763358778625,0.9286652033739218
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.8015267175572519,0.22137404580152673,0.9324819972670515
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.8091603053435115,0.20610687022900764,0.9364896308548377
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.816793893129771,0.1984732824427481,0.9386706559366261
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.8244274809160306,0.19083969465648856,0.9405790528831911
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.816793893129771,0.19083969465648856,0.9419517594587903
-development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.8244274809160306,0.20610687022900764,0.9447571044196196
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.6183206106870229,0.45038167938931295,0.8286796012790387
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.5725190839694656,0.5114503816793893,0.8220153579735741
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.5648854961832062,0.549618320610687,0.8091948451530612
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.5343511450381679,0.6106870229007634,0.7994268353850514
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.5114503816793893,0.6564885496183206,0.7947251957898804
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.48091603053435117,0.7404580152671756,0.7777202753498454
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.45038167938931295,0.8854961832061069,0.7551587825593451
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.37404580152671757,1.1374045801526718,0.7226983252897276
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.3053435114503817,1.5572519083969465,0.6592420614517843
-development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.22900763358778625,2.16793893129771,0.5794414772317545
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.19083969465648856,2.2519083969465647,0.5655446167599643
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.2900763358778626,1.6488549618320612,0.6528534754830455
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.3511450381679389,1.297709923664122,0.7002059533698746
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.3969465648854962,1.0458015267175573,0.7421995831497641
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.45038167938931295,0.8244274809160306,0.775651330723649
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.5114503816793893,0.6641221374045801,0.7988790571956502
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.5343511450381679,0.6106870229007634,0.80836651630143
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.5801526717557252,0.5419847328244275,0.817718777361204
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.6259541984732825,0.46564885496183206,0.8317136883026799
-development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.6183206106870229,0.45038167938931295,0.8426560961916527
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.16030534351145037,2.312977099236641,0.5553086695011163
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.24427480916030533,1.748091603053435,0.6377369628273605
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.33587786259541985,1.366412213740458,0.6948566588984427
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.3816793893129771,1.1221374045801527,0.7320881085344725
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.4122137404580153,0.9236641221374046,0.7630223142778386
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.4580152671755725,0.7786259541984732,0.7894700819469803
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.5114503816793893,0.6717557251908397,0.8034137718448687
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.5572519083969466,0.5648854961832062,0.8161364181553012
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.5877862595419847,0.4961832061068702,0.828540998307973
-development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.5877862595419847,0.48091603053435117,0.8321154560809041
-development,pca_16,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.3816793893129771,0.8549618320610687,0.7421230124725503
-development,pca_16,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.3816793893129771,0.8549618320610687,0.7421230124725503
-development,pca_16,inductive,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.015267175572519083,3.045801526717557,0.3954007166441879
-development,pca_16,inductive,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.015267175572519083,3.045801526717557,0.3954007166441879
-development,pca_16,inductive,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.015267175572519083,3.0763358778625953,0.3913294698248495
-development,pca_16,inductive,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.015267175572519083,3.099236641221374,0.389108789741574
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.7557251908396947,0.2824427480916031,0.9097986373699511
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.7557251908396947,0.2748091603053435,0.9056637773190606
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.7633587786259542,0.2595419847328244,0.9036493583199087
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.7404580152671756,0.2824427480916031,0.8970335822384838
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.7404580152671756,0.2748091603053435,0.8925147962612807
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.6412213740458015,0.44274809160305345,0.8636487379858211
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.6106870229007634,0.5954198473282443,0.8370501100613595
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.5267175572519084,0.9236641221374046,0.7994879266976495
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.366412213740458,1.4351145038167938,0.7084976126056881
-development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.2824427480916031,1.8244274809160306,0.6389057685763191
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.5648854961832062,0.5419847328244275,0.8187801707689212
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.5572519083969466,0.5572519083969466,0.8140285186890249
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.5419847328244275,0.5801526717557252,0.8005718735529904
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.5343511450381679,0.6335877862595419,0.7940675836818866
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.48854961832061067,0.7251908396946565,0.775439286618475
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.4580152671755725,0.8473282442748091,0.758763532347301
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.35877862595419846,1.1755725190839694,0.7210531934919239
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.3282442748091603,1.4809160305343512,0.6843582871304849
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.2824427480916031,1.9236641221374047,0.6208509371526648
-development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.13740458015267176,2.5114503816793894,0.5199638616372245
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.11450381679389313,2.5801526717557253,0.5082389386427153
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.24427480916030533,2.0076335877862594,0.6086917223216942
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.29770992366412213,1.5725190839694656,0.668416715644518
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.3435114503816794,1.3129770992366412,0.7037057971268498
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.40458015267175573,1.0229007633587786,0.744565389523204
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.44274809160305345,0.8778625954198473,0.7641764400502851
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.5114503816793893,0.6870229007633588,0.7977276852427515
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.549618320610687,0.5801526717557252,0.8073062957755606
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.5725190839694656,0.549618320610687,0.8211194546268874
-development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.6335877862595419,0.48091603053435117,0.8323043825956642
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.0916030534351145,2.6717557251908395,0.4900331622308319
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.21374045801526717,2.0763358778625953,0.5966396455649168
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.2824427480916031,1.6259541984732824,0.6606559013951541
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.31297709923664124,1.381679389312977,0.6939002718633093
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.37404580152671757,1.1145038167938932,0.7358969308447011
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.4122137404580153,0.9541984732824428,0.7558461359184542
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.4351145038167939,0.816793893129771,0.7785343891410585
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.4961832061068702,0.6717557251908397,0.8007387115362206
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.5648854961832062,0.5801526717557252,0.8207710964541017
-development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.5954198473282443,0.5114503816793893,0.8258601549782747
-development,pca_64,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.40458015267175573,0.8396946564885496,0.7409537406925916
-development,pca_64,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.40458015267175573,0.8396946564885496,0.7409537406925916
-development,pca_64,inductive,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,pca_64,inductive,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,pca_64,inductive,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,pca_64,inductive,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.6641221374045801,0.3969465648854962,0.8658052195115272
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.6412213740458015,0.4122137404580153,0.858668101908359
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.6259541984732825,0.4122137404580153,0.8564458330830367
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.6259541984732825,0.4122137404580153,0.8568480602028212
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.5572519083969466,0.5572519083969466,0.826753593266249
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.4961832061068702,0.7404580152671756,0.7901946263637706
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.4122137404580153,1.1908396946564885,0.7298526570523357
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.32061068702290074,1.6717557251908397,0.6736584060107563
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.22137404580152673,2.068702290076336,0.6048147190071659
-development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.183206106870229,2.404580152671756,0.5466065149974351
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.5725190839694656,0.5267175572519084,0.8017610152001473
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.5801526717557252,0.4961832061068702,0.8141675865761844
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.5801526717557252,0.48854961832061067,0.8177332321265628
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.5572519083969466,0.549618320610687,0.8034959850648882
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.5572519083969466,0.5954198473282443,0.7957225879785141
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.5114503816793893,0.6641221374045801,0.7845478636358507
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.48854961832061067,0.7404580152671756,0.7817224447798976
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.4732824427480916,0.8320610687022901,0.7675578985542827
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.45038167938931295,0.9312977099236641,0.7509539754919425
-development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.366412213740458,1.2671755725190839,0.7103416615971859
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.31297709923664124,1.4198473282442747,0.6979670980775843
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.4198473282442748,1.0229007633587786,0.7417449275424366
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.46564885496183206,0.8625954198473282,0.7684657893778022
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.5190839694656488,0.7557251908396947,0.7787174768894335
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.5267175572519084,0.6717557251908397,0.7865934007958918
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.5343511450381679,0.6412213740458015,0.795244800286986
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.5267175572519084,0.5877862595419847,0.800021851056403
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.5419847328244275,0.5419847328244275,0.8068955752965394
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.5954198473282443,0.48854961832061067,0.8037352919835844
-development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.6106870229007634,0.4580152671755725,0.8075611734812217
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.29770992366412213,1.5038167938931297,0.684318356747043
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.37404580152671757,1.099236641221374,0.7363769070980802
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.45038167938931295,0.9236641221374046,0.7591691699666789
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.4961832061068702,0.8244274809160306,0.7747998497194962
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.5114503816793893,0.7251908396946565,0.7858495796422674
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.5267175572519084,0.6641221374045801,0.7940543240965097
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.5343511450381679,0.6106870229007634,0.7995068868009809
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.549618320610687,0.5572519083969466,0.8029420013047975
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.5419847328244275,0.5343511450381679,0.806986451341614
-development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.5725190839694656,0.5038167938931297,0.8101792297252323
-development,tsne_5,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.3816793893129771,0.7862595419847328,0.7598752492987125
-development,tsne_5,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.3816793893129771,0.7862595419847328,0.7598752492987125
-development,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.16030534351145037,1.3511450381679388,0.5924815742714498
-development,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.15267175572519084,1.381679389312977,0.5893009126938417
-development,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.16030534351145037,1.4045801526717556,0.5815825072655125
-development,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.13740458015267176,1.4885496183206106,0.5630104728537834
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.6259541984732825,0.44274809160305345,0.8322147842336673
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.5725190839694656,0.5038167938931297,0.8258664040303253
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.5801526717557252,0.5572519083969466,0.8167215200762811
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.5725190839694656,0.5954198473282443,0.8065615782369498
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.5190839694656488,0.6793893129770993,0.7867566588137097
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.48854961832061067,0.8015267175572519,0.7711642861401801
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.4122137404580153,1.015267175572519,0.7488057933317074
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.31297709923664124,1.4045801526717556,0.6903441320074507
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.22900763358778625,1.9312977099236641,0.6059933682673739
-development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.05343511450381679,3.0381679389312977,0.42004146360313493
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.366412213740458,0.9694656488549618,0.7149543528209659
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.3435114503816794,1.1145038167938932,0.6937116787056521
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.31297709923664124,1.3053435114503817,0.676010783333001
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.2595419847328244,1.5725190839694656,0.6437775719214048
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.1450381679389313,2.068702290076336,0.5667719651448058
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.07633587786259542,2.435114503816794,0.5085330030890496
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.03816793893129771,2.8244274809160306,0.4511362025323455
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.030534351145038167,3.122137404580153,0.40404919284991603
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.015267175572519083,3.2290076335877864,0.3806739608768536
-development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.015267175572519083,3.2290076335877864,0.3806739608768536
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.022900763358778626,3.1374045801526718,0.40023239895678625
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.030534351145038167,2.900763358778626,0.4383036788219592
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.05343511450381679,2.564885496183206,0.48513437814361876
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.08396946564885496,2.2595419847328246,0.5372113790856258
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.15267175572519084,1.8549618320610688,0.6056782175906321
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.2366412213740458,1.5114503816793894,0.6545444555890517
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.31297709923664124,1.2748091603053435,0.6866803222669031
-development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.3511450381679389,1.1297709923664123,0.7063701030454747
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.015267175572519083,3.2290076335877864,0.3806739608768536
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.022900763358778626,3.145038167938931,0.39896013432574295
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.030534351145038167,2.900763358778626,0.4383036788219592
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.04580152671755725,2.6106870229007635,0.47926765547295874
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.06870229007633588,2.3435114503816794,0.5200382850041348
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.11450381679389313,2.0229007633587788,0.5787747775192532
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.16793893129770993,1.6946564885496183,0.6236441363199097
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.22137404580152673,1.465648854961832,0.6557502617466457
-development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.2824427480916031,1.2748091603053435,0.6856715981665761
-development,tsne_16,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.29770992366412213,1.083969465648855,0.6673695027351114
-development,tsne_16,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.29770992366412213,1.083969465648855,0.6673695027351114
-development,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.015267175572519083,3.2595419847328246,0.3737673814511902
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.5572519083969466,0.5954198473282443,0.7965544120626483
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.5648854961832062,0.5419847328244275,0.810884970125629
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.5572519083969466,0.5572519083969466,0.7993115562621388
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.4580152671755725,0.7404580152671756,0.7628154466844703
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.3893129770992366,0.9465648854961832,0.7321480860552777
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.2900763358778626,1.381679389312977,0.6799389017749805
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.17557251908396945,2.0229007633587788,0.5752485405759813
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.06870229007633588,2.6717557251908395,0.4696339685491955
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.022900763358778626,3.0763358778625953,0.40707904434300574
-development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.022900763358778626,3.213740458015267,0.3826243006134529
+partition,representation,evaluation_regime,method,parameters,n_recordings,count_accuracy,mean_signed_error,count_mae,hungarian_accuracy
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.5343511450381679,-0.648854961832061,0.648854961832061,0.7948756836663626
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.5419847328244275,-0.6412213740458015,0.6412213740458015,0.7974202129284491
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.5419847328244275,-0.6183206106870229,0.6335877862595419,0.7985107254693434
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.5954198473282443,-0.5419847328244275,0.5725190839694656,0.8183580537136181
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.6030534351145038,-0.4580152671755725,0.549618320610687,0.8209091921426193
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.648854961832061,-0.3053435114503817,0.4580152671755725,0.8402462576930234
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.6717557251908397,-0.13740458015267176,0.3969465648854962,0.8502840994102544
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.6106870229007634,0.183206106870229,0.4580152671755725,0.8279023028219492
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.5114503816793893,0.732824427480916,0.8091603053435115,0.779081784917462
+development,embedding_512,inductive,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.26717557251908397,1.6946564885496183,1.7251908396946565,0.6478427045924033
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.2595419847328244,1.8625954198473282,1.8625954198473282,0.6316604347841792
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.44274809160305345,0.9083969465648855,0.9694656488549618,0.7665293391488651
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.6106870229007634,0.42748091603053434,0.5190839694656488,0.8310857182191052
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.6641221374045801,0.13740458015267176,0.3816793893129771,0.8582514066443355
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.7175572519083969,-0.04580152671755725,0.2900763358778626,0.8822426825440084
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.7022900763358778,-0.22900763358778625,0.3511450381679389,0.8624865492081241
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.6183206106870229,-0.37404580152671757,0.46564885496183206,0.8388073869793434
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.5954198473282443,-0.5267175572519084,0.5419847328244275,0.8217076504139581
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.549618320610687,-0.6183206106870229,0.6183206106870229,0.802443179783477
+development,embedding_512,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.5343511450381679,-0.6412213740458015,0.6412213740458015,0.7959661962072568
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.21374045801526717,1.9465648854961832,1.9465648854961832,0.6165003972858534
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.40458015267175573,1.0076335877862594,1.0534351145038168,0.7572126313488307
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.5648854961832062,0.549618320610687,0.6106870229007634,0.8215152989058172
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.6335877862595419,0.3053435114503817,0.4580152671755725,0.8503817317899279
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.6793893129770993,0.08396946564885496,0.3435114503816794,0.8654124389962076
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.6946564885496184,-0.08396946564885496,0.31297709923664124,0.8789438821078033
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.7099236641221374,-0.183206106870229,0.2900763358778626,0.8804584828590453
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.6641221374045801,-0.3282442748091603,0.37404580152671757,0.8554898908956762
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.6412213740458015,-0.4198473282442748,0.4351145038167939,0.8453141118066791
+development,embedding_512,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.5877862595419847,-0.5419847328244275,0.5419847328244275,0.8166670591138248
+development,embedding_512,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.3893129770992366,0.46564885496183206,0.8931297709923665,0.7268140167497339
+development,embedding_512,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.3893129770992366,0.46564885496183206,0.8931297709923665,0.7268140167497339
+development,embedding_512,inductive,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,embedding_512,inductive,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,embedding_512,inductive,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,embedding_512,inductive,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.7709923664122137,-0.183206106870229,0.2595419847328244,0.9187415392517844
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.7786259541984732,-0.17557251908396945,0.25190839694656486,0.9210316155876623
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.7862595419847328,-0.16793893129770993,0.24427480916030533,0.924848409480792
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.7938931297709924,-0.15267175572519084,0.22900763358778625,0.9286652033739218
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.8015267175572519,-0.1450381679389313,0.22137404580152673,0.9324819972670515
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.8091603053435115,-0.1297709923664122,0.20610687022900764,0.9364896308548377
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.816793893129771,-0.12213740458015267,0.1984732824427481,0.9386706559366261
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.8244274809160306,-0.11450381679389313,0.19083969465648856,0.9405790528831911
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.816793893129771,-0.09923664122137404,0.19083969465648856,0.9419517594587903
+development,embedding_512,inductive,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.8244274809160306,0.022900763358778626,0.20610687022900764,0.9447571044196196
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.6183206106870229,-0.06870229007633588,0.45038167938931295,0.8286796012790387
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.5725190839694656,0.05343511450381679,0.5114503816793893,0.8220153579735741
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.5648854961832062,0.16793893129770993,0.549618320610687,0.8091948451530612
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.5343511450381679,0.3053435114503817,0.6106870229007634,0.7994268353850514
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.5114503816793893,0.4122137404580153,0.6564885496183206,0.7947251957898804
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.48091603053435117,0.5725190839694656,0.7404580152671756,0.7777202753498454
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.45038167938931295,0.8396946564885496,0.8854961832061069,0.7551587825593451
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.37404580152671757,1.0916030534351144,1.1374045801526718,0.7226983252897276
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.3053435114503817,1.5419847328244274,1.5572519083969465,0.6592420614517843
+development,pca_16,inductive,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.22900763358778625,2.16793893129771,2.16793893129771,0.5794414772317545
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.19083969465648856,2.2519083969465647,2.2519083969465647,0.5655446167599643
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.2900763358778626,1.6488549618320612,1.6488549618320612,0.6528534754830455
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.3511450381679389,1.282442748091603,1.297709923664122,0.7002059533698746
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.3969465648854962,1.0,1.0458015267175573,0.7421995831497641
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.45038167938931295,0.7786259541984732,0.8244274809160306,0.775651330723649
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.5114503816793893,0.6030534351145038,0.6641221374045801,0.7988790571956502
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.5343511450381679,0.5038167938931297,0.6106870229007634,0.80836651630143
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.5801526717557252,0.4198473282442748,0.5419847328244275,0.817718777361204
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.6259541984732825,0.3282442748091603,0.46564885496183206,0.8317136883026799
+development,pca_16,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.6183206106870229,0.2366412213740458,0.45038167938931295,0.8426560961916527
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.16030534351145037,2.312977099236641,2.312977099236641,0.5553086695011163
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.24427480916030533,1.748091603053435,1.748091603053435,0.6377369628273605
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.33587786259541985,1.3511450381679388,1.366412213740458,0.6948566588984427
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.3816793893129771,1.1068702290076335,1.1221374045801527,0.7320881085344725
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.4122137404580153,0.8931297709923665,0.9236641221374046,0.7630223142778386
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.4580152671755725,0.732824427480916,0.7786259541984732,0.7894700819469803
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.5114503816793893,0.6259541984732825,0.6717557251908397,0.8034137718448687
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.5572519083969466,0.5038167938931297,0.5648854961832062,0.8161364181553012
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.5877862595419847,0.40458015267175573,0.4961832061068702,0.828540998307973
+development,pca_16,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.5877862595419847,0.3435114503816794,0.48091603053435117,0.8321154560809041
+development,pca_16,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.3816793893129771,0.5343511450381679,0.8549618320610687,0.7421230124725503
+development,pca_16,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.3816793893129771,0.5343511450381679,0.8549618320610687,0.7421230124725503
+development,pca_16,inductive,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.015267175572519083,3.045801526717557,3.045801526717557,0.3954007166441879
+development,pca_16,inductive,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.015267175572519083,3.045801526717557,3.045801526717557,0.3954007166441879
+development,pca_16,inductive,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.015267175572519083,3.0763358778625953,3.0763358778625953,0.3913294698248495
+development,pca_16,inductive,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.015267175572519083,3.099236641221374,3.099236641221374,0.389108789741574
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.7557251908396947,-0.22137404580152673,0.2824427480916031,0.9097986373699511
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.7557251908396947,-0.16793893129770993,0.2748091603053435,0.9056637773190606
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.7633587786259542,-0.12213740458015267,0.2595419847328244,0.9036493583199087
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.7404580152671756,-0.09923664122137404,0.2824427480916031,0.8970335822384838
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.7404580152671756,0.030534351145038167,0.2748091603053435,0.8925147962612807
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.6412213740458015,0.2595419847328244,0.44274809160305345,0.8636487379858211
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.6106870229007634,0.5190839694656488,0.5954198473282443,0.8370501100613595
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.5267175572519084,0.9083969465648855,0.9236641221374046,0.7994879266976495
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.366412213740458,1.4351145038167938,1.4351145038167938,0.7084976126056881
+development,pca_16,inductive,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.2824427480916031,1.8244274809160306,1.8244274809160306,0.6389057685763191
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.5648854961832062,0.09923664122137404,0.5419847328244275,0.8187801707689212
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.5572519083969466,0.2366412213740458,0.5572519083969466,0.8140285186890249
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.5419847328244275,0.33587786259541985,0.5801526717557252,0.8005718735529904
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.5343511450381679,0.46564885496183206,0.6335877862595419,0.7940675836818866
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.48854961832061067,0.648854961832061,0.7251908396946565,0.775439286618475
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.4580152671755725,0.8015267175572519,0.8473282442748091,0.758763532347301
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.35877862595419846,1.1297709923664123,1.1755725190839694,0.7210531934919239
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.3282442748091603,1.450381679389313,1.4809160305343512,0.6843582871304849
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.2824427480916031,1.9236641221374047,1.9236641221374047,0.6208509371526648
+development,pca_64,inductive,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.13740458015267176,2.5114503816793894,2.5114503816793894,0.5199638616372245
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.11450381679389313,2.5801526717557253,2.5801526717557253,0.5082389386427153
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.24427480916030533,2.0076335877862594,2.0076335877862594,0.6086917223216942
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.29770992366412213,1.5725190839694656,1.5725190839694656,0.668416715644518
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.3435114503816794,1.297709923664122,1.3129770992366412,0.7037057971268498
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.40458015267175573,0.9770992366412213,1.0229007633587786,0.744565389523204
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.44274809160305345,0.8320610687022901,0.8778625954198473,0.7641764400502851
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.5114503816793893,0.6412213740458015,0.6870229007633588,0.7977276852427515
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.549618320610687,0.5038167938931297,0.5801526717557252,0.8073062957755606
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.5725190839694656,0.44274809160305345,0.549618320610687,0.8211194546268874
+development,pca_64,inductive,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.6335877862595419,0.35877862595419846,0.48091603053435117,0.8323043825956642
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.0916030534351145,2.6717557251908395,2.6717557251908395,0.4900331622308319
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.21374045801526717,2.0763358778625953,2.0763358778625953,0.5966396455649168
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.2824427480916031,1.6259541984732824,1.6259541984732824,0.6606559013951541
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.31297709923664124,1.366412213740458,1.381679389312977,0.6939002718633093
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.37404580152671757,1.099236641221374,1.1145038167938932,0.7358969308447011
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.4122137404580153,0.9236641221374046,0.9541984732824428,0.7558461359184542
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.4351145038167939,0.7709923664122137,0.816793893129771,0.7785343891410585
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.4961832061068702,0.6259541984732825,0.6717557251908397,0.8007387115362206
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.5648854961832062,0.5190839694656488,0.5801526717557252,0.8207710964541017
+development,pca_64,inductive,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.5954198473282443,0.4351145038167939,0.5114503816793893,0.8258601549782747
+development,pca_64,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.40458015267175573,0.5190839694656488,0.8396946564885496,0.7409537406925916
+development,pca_64,inductive,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.40458015267175573,0.5190839694656488,0.8396946564885496,0.7409537406925916
+development,pca_64,inductive,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,pca_64,inductive,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,pca_64,inductive,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,pca_64,inductive,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.6641221374045801,-0.13740458015267176,0.3969465648854962,0.8658052195115272
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.6412213740458015,-0.07633587786259542,0.4122137404580153,0.858668101908359
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.6259541984732825,0.04580152671755725,0.4122137404580153,0.8564458330830367
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.6259541984732825,0.22900763358778625,0.4122137404580153,0.8568480602028212
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.5572519083969466,0.4351145038167939,0.5572519083969466,0.826753593266249
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.4961832061068702,0.6946564885496184,0.7404580152671756,0.7901946263637706
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.4122137404580153,1.1908396946564885,1.1908396946564885,0.7298526570523357
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.32061068702290074,1.6717557251908397,1.6717557251908397,0.6736584060107563
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.22137404580152673,2.068702290076336,2.068702290076336,0.6048147190071659
+development,pca_64,inductive,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.183206106870229,2.404580152671756,2.404580152671756,0.5466065149974351
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.5725190839694656,0.007633587786259542,0.5267175572519084,0.8017610152001473
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.5801526717557252,0.08396946564885496,0.4961832061068702,0.8141675865761844
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.5801526717557252,0.13740458015267176,0.48854961832061067,0.8177332321265628
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.5572519083969466,0.24427480916030533,0.549618320610687,0.8034959850648882
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.5572519083969466,0.3816793893129771,0.5954198473282443,0.7957225879785141
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.5114503816793893,0.46564885496183206,0.6641221374045801,0.7845478636358507
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.48854961832061067,0.5725190839694656,0.7404580152671756,0.7817224447798976
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.4732824427480916,0.6946564885496184,0.8320610687022901,0.7675578985542827
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.45038167938931295,0.9007633587786259,0.9312977099236641,0.7509539754919425
+development,tsne_5,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.366412213740458,1.2671755725190839,1.2671755725190839,0.7103416615971859
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.31297709923664124,1.4198473282442747,1.4198473282442747,0.6979670980775843
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.4198473282442748,1.0229007633587786,1.0229007633587786,0.7417449275424366
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.46564885496183206,0.816793893129771,0.8625954198473282,0.7684657893778022
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.5190839694656488,0.6793893129770993,0.7557251908396947,0.7787174768894335
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.5267175572519084,0.5648854961832062,0.6717557251908397,0.7865934007958918
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.5343511450381679,0.5190839694656488,0.6412213740458015,0.795244800286986
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.5267175572519084,0.4351145038167939,0.5877862595419847,0.800021851056403
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.5419847328244275,0.3435114503816794,0.5419847328244275,0.8068955752965394
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.5954198473282443,0.2748091603053435,0.48854961832061067,0.8037352919835844
+development,tsne_5,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.6106870229007634,0.21374045801526717,0.4580152671755725,0.8075611734812217
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.29770992366412213,1.5038167938931297,1.5038167938931297,0.684318356747043
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.37404580152671757,1.099236641221374,1.099236641221374,0.7363769070980802
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.45038167938931295,0.9236641221374046,0.9236641221374046,0.7591691699666789
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.4961832061068702,0.7938931297709924,0.8244274809160306,0.7747998497194962
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.5114503816793893,0.6641221374045801,0.7251908396946565,0.7858495796422674
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.5267175572519084,0.5725190839694656,0.6641221374045801,0.7940543240965097
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.5343511450381679,0.5038167938931297,0.6106870229007634,0.7995068868009809
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.549618320610687,0.45038167938931295,0.5572519083969466,0.8029420013047975
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.5419847328244275,0.3969465648854962,0.5343511450381679,0.806986451341614
+development,tsne_5,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.5725190839694656,0.33587786259541985,0.5038167938931297,0.8101792297252323
+development,tsne_5,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.3816793893129771,0.5419847328244275,0.7862595419847328,0.7598752492987125
+development,tsne_5,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.3816793893129771,0.5419847328244275,0.7862595419847328,0.7598752492987125
+development,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.16030534351145037,1.2748091603053435,1.3511450381679388,0.5924815742714498
+development,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.15267175572519084,1.3053435114503817,1.381679389312977,0.5893009126938417
+development,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.16030534351145037,1.3435114503816794,1.4045801526717556,0.5815825072655125
+development,tsne_5,transductive_exploratory,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.13740458015267176,1.4122137404580153,1.4885496183206106,0.5630104728537834
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.6259541984732825,0.10687022900763359,0.44274809160305345,0.8322147842336673
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.5725190839694656,0.24427480916030533,0.5038167938931297,0.8258664040303253
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.5801526717557252,0.35877862595419846,0.5572519083969466,0.8167215200762811
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.5725190839694656,0.4580152671755725,0.5954198473282443,0.8065615782369498
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.5190839694656488,0.5725190839694656,0.6793893129770993,0.7867566588137097
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.48854961832061067,0.7709923664122137,0.8015267175572519,0.7711642861401801
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.4122137404580153,1.0,1.015267175572519,0.7488057933317074
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.31297709923664124,1.3893129770992367,1.4045801526717556,0.6903441320074507
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.22900763358778625,1.9312977099236641,1.9312977099236641,0.6059933682673739
+development,tsne_5,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.05343511450381679,3.0381679389312977,3.0381679389312977,0.42004146360313493
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.5}",131.0,0.366412213740458,0.8320610687022901,0.9694656488549618,0.7149543528209659
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.55}",131.0,0.3435114503816794,1.0381679389312977,1.1145038167938932,0.6937116787056521
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.6}",131.0,0.31297709923664124,1.2900763358778626,1.3053435114503817,0.676010783333001
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.65}",131.0,0.2595419847328244,1.5725190839694656,1.5725190839694656,0.6437775719214048
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.7}",131.0,0.1450381679389313,2.068702290076336,2.068702290076336,0.5667719651448058
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.75}",131.0,0.07633587786259542,2.435114503816794,2.435114503816794,0.5085330030890496
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.8}",131.0,0.03816793893129771,2.8244274809160306,2.8244274809160306,0.4511362025323455
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.85}",131.0,0.030534351145038167,3.122137404580153,3.122137404580153,0.40404919284991603
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.9}",131.0,0.015267175572519083,3.2290076335877864,3.2290076335877864,0.3806739608768536
+development,tsne_16,transductive_exploratory,cosine_adjacency,"{""threshold"": 0.95}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.05, ""linkage"": ""average""}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.1, ""linkage"": ""average""}",131.0,0.015267175572519083,3.2290076335877864,3.2290076335877864,0.3806739608768536
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.15, ""linkage"": ""average""}",131.0,0.022900763358778626,3.1374045801526718,3.1374045801526718,0.40023239895678625
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.2, ""linkage"": ""average""}",131.0,0.030534351145038167,2.900763358778626,2.900763358778626,0.4383036788219592
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.25, ""linkage"": ""average""}",131.0,0.05343511450381679,2.564885496183206,2.564885496183206,0.48513437814361876
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.3, ""linkage"": ""average""}",131.0,0.08396946564885496,2.2595419847328246,2.2595419847328246,0.5372113790856258
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.35, ""linkage"": ""average""}",131.0,0.15267175572519084,1.8549618320610688,1.8549618320610688,0.6056782175906321
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.4, ""linkage"": ""average""}",131.0,0.2366412213740458,1.5114503816793894,1.5114503816793894,0.6545444555890517
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.45, ""linkage"": ""average""}",131.0,0.31297709923664124,1.2748091603053435,1.2748091603053435,0.6866803222669031
+development,tsne_16,transductive_exploratory,agglomerative_average,"{""distance_threshold"": 0.5, ""linkage"": ""average""}",131.0,0.3511450381679389,1.1297709923664123,1.1297709923664123,0.7063701030454747
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.05, ""linkage"": ""complete""}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.1, ""linkage"": ""complete""}",131.0,0.015267175572519083,3.2290076335877864,3.2290076335877864,0.3806739608768536
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.15, ""linkage"": ""complete""}",131.0,0.022900763358778626,3.145038167938931,3.145038167938931,0.39896013432574295
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.2, ""linkage"": ""complete""}",131.0,0.030534351145038167,2.900763358778626,2.900763358778626,0.4383036788219592
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.25, ""linkage"": ""complete""}",131.0,0.04580152671755725,2.6106870229007635,2.6106870229007635,0.47926765547295874
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.3, ""linkage"": ""complete""}",131.0,0.06870229007633588,2.3435114503816794,2.3435114503816794,0.5200382850041348
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.35, ""linkage"": ""complete""}",131.0,0.11450381679389313,2.0229007633587788,2.0229007633587788,0.5787747775192532
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.4, ""linkage"": ""complete""}",131.0,0.16793893129770993,1.6946564885496183,1.6946564885496183,0.6236441363199097
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.45, ""linkage"": ""complete""}",131.0,0.22137404580152673,1.465648854961832,1.465648854961832,0.6557502617466457
+development,tsne_16,transductive_exploratory,agglomerative_complete,"{""distance_threshold"": 0.5, ""linkage"": ""complete""}",131.0,0.2824427480916031,1.2748091603053435,1.2748091603053435,0.6856715981665761
+development,tsne_16,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 1}",131.0,0.29770992366412213,0.42748091603053434,1.083969465648855,0.6673695027351114
+development,tsne_16,transductive_exploratory,hdbscan,"{""min_cluster_size"": 2, ""min_samples"": 2}",131.0,0.29770992366412213,0.42748091603053434,1.083969465648855,0.6673695027351114
+development,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.01}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 0.1}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 1.0}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,tsne_16,transductive_exploratory,dpgmm,"{""concentration_prior"": 10.0}",131.0,0.015267175572519083,3.2595419847328246,3.2595419847328246,0.3737673814511902
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.5}",131.0,0.5572519083969466,-0.15267175572519084,0.5954198473282443,0.7965544120626483
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.55}",131.0,0.5648854961832062,0.09923664122137404,0.5419847328244275,0.810884970125629
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.6}",131.0,0.5572519083969466,0.26717557251908397,0.5572519083969466,0.7993115562621388
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.65}",131.0,0.4580152671755725,0.5877862595419847,0.7404580152671756,0.7628154466844703
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.7}",131.0,0.3893129770992366,0.8854961832061069,0.9465648854961832,0.7321480860552777
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.75}",131.0,0.2900763358778626,1.366412213740458,1.381679389312977,0.6799389017749805
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.8}",131.0,0.17557251908396945,2.0076335877862594,2.0229007633587788,0.5752485405759813
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.85}",131.0,0.06870229007633588,2.6717557251908395,2.6717557251908395,0.4696339685491955
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.9}",131.0,0.022900763358778626,3.0763358778625953,3.0763358778625953,0.40707904434300574
+development,tsne_16,transductive_exploratory,pairwise_mlp,"{""probability_threshold"": 0.95}",131.0,0.022900763358778626,3.213740458015267,3.213740458015267,0.3826243006134529

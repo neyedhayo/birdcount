@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Birdcount research presentation on estimating the number of singing Ovenbirds from field recordings.">
+  <title>Birdcount | Acoustic signatures</title>
+  <link rel="stylesheet" href="deck.css">
+  <script defer src="data.js"></script>
+  <script defer src="deck.js"></script>
+</head>
+<body>
+  <main id="viewport" aria-label="Birdcount presentation">
+    <div id="stage">
+      <!-- To add a slide, copy a section, give it a unique id, and edit its notes. -->
+      <section class="slide cover split" id="birdcount" aria-labelledby="title-birdcount">
+        <div class="cover-type">
+          <h1 id="title-birdcount">Birdcount</h1>
+          <p>Learning Individual Acoustic Signatures for Automated Bird Population Estimation</p>
+        </div>
+        <figure class="photo cover-photo">
+          <img src="media/ovenbird.jpg" alt="An Ovenbird with a striped crown and streaked breast on a leaf-covered forest floor">
+          <figcaption>Ovenbird <i>Seiurus aurocapilla</i></figcaption>
+        </figure>
+        <aside class="notes">
+          <p>Can we distinguish individual birds by song well enough to count how many are singing in a recording? The experiment uses the Ovenbird as a first case.</p>
+          <p>Photo by Andy Reago &amp; Chrissy McClarren (Wildreturn). Resized and cropped in the deck. <a href="https://commons.wikimedia.org/wiki/File:Ovenbird_-_48821942238.jpg">Original</a> · <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a></p>
+        </aside>
+      </section>
+
+      <section class="slide split ecology" id="ecological-question" aria-labelledby="title-ecology">
+        <div>
+          <h2 class="display" id="title-ecology">How many birds<br>are <em>singing here?</em></h2>
+          <p class="takeaway">Track abundance over time.</p>
+        </div>
+        <figure class="photo ecology-photo">
+          <img src="media/forest.jpg" alt="Aerial view across an extensive boreal forest and its lakes">
+        </figure>
+        <aside class="notes">
+          <p>Autonomous recorders can sample many places repeatedly. If we can distinguish the singers, those recordings can contribute abundance estimates that help ecologists track changes over time. This experiment tests counting within the footprint and duration of a single recording. Population estimates also need a sampling design and a way to account for detectability.</p>
+          <p>Ontario boreal forest photo by Tony Roberts, USFWS, public domain. <a href="https://www.fws.gov/media/boreal-forest-landscape">Photo source</a></p>
+        </aside>
+      </section>
+
+      <section class="slide" id="counting-challenge" aria-labelledby="title-challenge">
+        <h2 id="title-challenge">Why counting is hard</h2>
+        <div id="challenge-figure" class="challenge-list" aria-label="Illustrations of repeated, overlapping, and missing songs"></div>
+        <aside class="notes">
+          <p>A single bird can produce several detections. Nearby birds can sing at the same time, and their calls mix with background noise. A bird that stays quiet during the recording contributes no event, so acoustic counts mainly describe the individuals that vocalized and were detectable.</p>
+          <p>The waveforms are excerpted from the repo recording. Their arrangement is schematic.</p>
+        </aside>
+      </section>
+
+      <section class="slide" id="prior-work" aria-labelledby="title-prior">
+        <h2 id="title-prior">Prior work and our contribution</h2>
+        <div class="pipeline">
+          <figure>
+            <div class="pipeline-visual">
+              <svg class="lineage-wave" id="lineage-wave" viewBox="0 0 280 105" role="img" aria-label="An audio waveform with highlighted song events"></svg>
+            </div>
+            <figcaption><b>HawkEars</b><span>Find Ovenbird songs</span></figcaption>
+          </figure>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <figure>
+            <div id="lineage-embedding" class="pipeline-visual barcode" role="img" aria-label="A sequence of embedding feature values"></div>
+            <figcaption><b>Lapp et al.</b><span>Learn individual signatures</span></figcaption>
+          </figure>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <figure class="ours">
+            <div class="pipeline-visual"><span class="pipeline-number">2</span></div>
+            <figcaption><b>Birdcount</b><span>Benchmark count estimators</span></figcaption>
+          </figure>
+        </div>
+        <aside class="notes">
+          <p>HawkEars scores the presence of species in short audio windows. Lapp and colleagues learned identity-sensitive embeddings from recording-location labels, then used them for individual recognition and multi-year resighting, abundance and survival estimation. Birdcount reuses their Ovenbird feature extractor and compares several algorithms for counting individuals within a recording, with hyperparameters selected on development locations and evaluated on held-out locations.</p>
+          <p><a href="https://github.com/jhuus/HawkEars">HawkEars</a> · <a href="https://doi.org/10.1101/2025.06.26.661638">Lapp et al. preprint</a> · <a href="https://github.com/sammlapp/ovenbird-individual-recognition">Lapp et al. code</a></p>
+        </aside>
+      </section>
+
+      <section class="slide" id="hawkears" aria-labelledby="title-hawkears">
+        <h2 id="title-hawkears">HawkEars finds the songs</h2>
+        <div class="detection">
+          <div class="recording-label">
+            <span class="label">Field recording · 60 s</span>
+            <button type="button" class="listen" data-audio="field-recording.mp3">Play recording</button>
+          </div>
+          <svg id="field-wave" viewBox="0 0 1136 170" role="img" aria-label="Full 60-second waveform with six highlighted song clips and a time axis"></svg>
+          <div class="recording-label clip-label"><span class="label">Detected songs · 2 s clips</span></div>
+          <div class="detected-clips" id="detected-clips"></div>
+        </div>
+        <aside class="notes">
+          <p>This demonstration uses the six events saved by a real HawkEars run on recording 199823. The repo scores overlapping 3-second windows at a 1-second stride and keeps separated peaks in the Ovenbird score. The colored bands indicate the centered 2-second excerpts passed to the embedding stage. The number on each play button is the excerpt’s start time in the source recording.</p>
+          <p>Playback uses the repo audio with normalized gain. The benchmark later in the talk starts from human annotations, so detector error was outside that evaluation.</p>
+          <p><a href="https://github.com/jhuus/HawkEars">HawkEars documentation</a></p>
+        </aside>
+      </section>
+
+      <section class="slide" id="song-embeddings" aria-labelledby="title-embeddings">
+        <h2 id="title-embeddings">Lapp’s model embeds each song</h2>
+        <div class="embedding-key" aria-hidden="true">
+          <span>2 s clip</span><span>Feature extractor</span><span>512 numbers <small>subset shown</small></span>
+        </div>
+        <div id="embedding-diagram" class="embedding-diagram" aria-label="Four example songs converted to their feature vectors"></div>
+        <p class="footline">Annotated test example · four songs</p>
+        <aside class="notes">
+          <p>From this point the worked example is recording 220875, a held-out recording with four manually annotated songs. The pretrained Ovenbird model turns each centered two-second clip into a 512-dimensional vector. Each strip shows every twelfth value from the corresponding stored embedding. The strips preview the vectors used by the counting methods.</p>
+          <p>Lapp et al. trained their feature extractor with recording-location pseudo-labels, using a ResNet18 network. It learns a representation in which songs from the same individual can be close even when the model has never encountered that individual before.</p>
+          <p><a href="https://github.com/sammlapp/ovenbird-individual-recognition">Ovenbird feature extractor</a></p>
+        </aside>
+      </section>
+
+      <section class="slide" id="count-singers" aria-labelledby="title-singers">
+        <h2 id="title-singers">Group the songs. Count the singers.</h2>
+        <div class="count-composition">
+          <figure class="point-figure">
+            <div class="points" id="call-points" aria-label="Four song embeddings plotted in a two-dimensional PCA projection"></div>
+            <figcaption>4 songs <small>2D view of embeddings</small></figcaption>
+          </figure>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <figure class="point-figure">
+            <div class="points" id="group-points" aria-label="The same points grouped into two clusters"></div>
+            <figcaption><span class="accent">2 clusters</span> <small>estimated singers</small></figcaption>
+          </figure>
+        </div>
+        <aside class="notes">
+          <p>Four calls in the annotated test recording become two clusters at the model’s selected threshold. In this example the annotated count is also two, and each pair of songs is correctly grouped. This is analogous to grouping utterances by speaker before counting how many people spoke in a recording.</p>
+          <p>The points are an illustration in two dimensions using a PCA projection of these four vectors. The actual clustering uses cosine distances in all 512 dimensions and runs independently within each recording.</p>
+        </aside>
+      </section>
+
+      <section class="slide" id="methods" aria-labelledby="title-methods">
+        <h2 id="title-methods">Six ways to group songs</h2>
+        <div class="methods">
+          <div>
+            <svg viewBox="0 0 240 120" class="method-visual" aria-hidden="true">
+              <path d="M28 106V68H86V106M147 106V57H207V106M57 68V23H177V57" class="method-line"/>
+              <path d="M14 47H223" class="method-cut"/>
+            </svg>
+            <h3>Linkage</h3>
+            <p class="method-choice">Average linkage</p>
+            <p>Complete linkage</p>
+          </div>
+          <div>
+            <svg viewBox="0 0 240 120" class="method-visual" aria-hidden="true">
+              <path d="M28 94L86 22L113 83ZM155 27L213 91" class="method-line"/>
+              <g class="method-node"><circle cx="28" cy="94" r="9"/><circle cx="86" cy="22" r="9"/><circle cx="113" cy="83" r="9"/><circle cx="155" cy="27" r="9"/><circle cx="213" cy="91" r="9"/></g>
+            </svg>
+            <h3>Graphs</h3>
+            <p>Cosine graph</p>
+            <p>Pairwise MLP</p>
+          </div>
+          <div>
+            <svg viewBox="0 0 240 120" class="method-visual" aria-hidden="true">
+              <g class="method-region"><ellipse cx="58" cy="77" rx="45" ry="34"/><ellipse cx="167" cy="46" rx="53" ry="35"/></g>
+              <g class="method-node"><circle cx="37" cy="78" r="6"/><circle cx="65" cy="70" r="6"/><circle cx="70" cy="92" r="6"/><circle cx="149" cy="36" r="6"/><circle cx="170" cy="54" r="6"/><circle cx="187" cy="47" r="6"/></g>
+            </svg>
+            <h3>Density &amp; mixture</h3>
+            <p>HDBSCAN</p>
+            <p>Dirichlet-process GMM</p>
+          </div>
+        </div>
+        <p class="footline"><b>Inputs</b> 512-D · PCA-16 · PCA-64</p>
+        <aside class="notes">
+          <p>We tried average and complete linkage using cosine distance, a cosine-similarity graph, an MLP that scores whether pairs of calls came from the same bird, HDBSCAN, and a Dirichlet-process Gaussian mixture. The two graph approaches use connected components. HDBSCAN noise events count as singletons in this benchmark.</p>
+          <p>Three inductive representations enter the main comparison. PCA is fitted on development data. Five- and sixteen-dimensional t-SNE are exploratory, fitted jointly, and excluded from the primary benchmark. The comparison also includes an always-one-bird baseline.</p>
+          <p>On the 97 held-out recordings, the best inductive representation for each method returned the following exact count accuracies. Average linkage 77.3%, cosine graph 73.2%, complete linkage 71.1%, pairwise MLP 63.9%, HDBSCAN 45.4%, Dirichlet-process mixture 1.0%. Configurations were selected using development assignment accuracy first.</p>
+        </aside>
+      </section>
+
+      <section class="slide" id="hyperparameters" aria-labelledby="title-hyperparameters">
+        <h2 id="title-hyperparameters">Tuning the distance threshold</h2>
+        <div class="tuning">
+          <figure class="sweep-figure">
+            <figcaption class="label">Assignment accuracy · development recordings</figcaption>
+            <svg id="sweep-chart" viewBox="0 0 750 390" role="img" aria-label="Development assignment accuracy by cosine-distance threshold for average linkage and original embeddings"></svg>
+          </figure>
+          <div class="tuning-stat">
+            <strong>0.25</strong>
+            <span class="label">Selected cosine distance</span>
+          </div>
+        </div>
+        <aside class="notes">
+          <p>This is one slice of the development grid, for average linkage with 512-dimensional embeddings. We ran 138 inductive settings across representations and methods. The agglomerative grid ran from 0.05 to 0.50 in steps of 0.05. Cosine graph similarity and MLP probability cutoffs ranged from 0.50 to 0.95. HDBSCAN used minimum cluster size 2 with minimum samples 1 or 2. The Dirichlet-process mixture tested concentration priors of 0.01, 0.1, 1, and 10.</p>
+          <p>We picked configurations by Hungarian-matched assignment accuracy, then exact count accuracy, then lower count MAE. Some PCA thresholds landed at the upper grid limit, so those comparisons could change with a wider sweep.</p>
+        </aside>
+      </section>
+
+      <section class="slide" id="average-linkage" aria-labelledby="title-linkage">
+        <h2 id="title-linkage">How average linkage merges songs</h2>
+        <div class="merge-layout">
+          <figure class="merge-figure">
+            <svg id="dendrogram" viewBox="0 0 770 415" role="img" aria-label="Average-linkage dendrogram for the four songs with a cut at cosine distance 0.25"></svg>
+          </figure>
+          <div class="merge-side">
+            <div class="merge-controls" aria-label="Clustering stages">
+              <button type="button" data-merge="0">Start with 4</button>
+              <button type="button" data-merge="1">Merge 1 + 3</button>
+              <button type="button" data-merge="2">Merge 2 + 4</button>
+              <button type="button" data-merge="3">Stop at 0.25</button>
+            </div>
+            <p class="merge-count"><strong id="merge-count">4</strong> clusters</p>
+          </div>
+        </div>
+        <aside class="notes">
+          <p>Start with one cluster per song. Average linkage computes the average of all cross-cluster cosine distances and repeatedly merges the closest available pair. In this recording songs 1 and 3 merge at 0.032, and songs 2 and 4 at 0.040. The remaining two clusters would merge at 0.317, above the 0.25 threshold. Cutting the tree there leaves two groups. The gray continuation marks that potential merge.</p>
+        </aside>
+      </section>
+
+      <section class="slide" id="evaluation" aria-labelledby="title-evaluation">
+        <h2 id="title-evaluation">Evaluation on unseen locations</h2>
+        <div class="split-bar" aria-label="60 percent development locations and 40 percent test locations">
+          <div><strong>60%</strong><span>Development<br><small>131 recordings</small></span></div>
+          <div><strong>40%</strong><span>Held-out test<br><small>97 recordings</small></span></div>
+        </div>
+        <div class="metrics">
+          <div><b>Exact count</b><span>Right number?</span></div>
+          <div><b>Count MAE</b><span>How far off?</span></div>
+          <div><b>Signed error</b><span>Over or under?</span></div>
+          <div><b>Matched accuracy</b><span>Right song groups?</span></div>
+        </div>
+        <aside class="notes">
+          <p>We split by location to prevent recordings from the same location leaking across partitions. Development locations are used for tuning and pairwise-MLP training. Recordings with only one usable call are excluded. Each recording gets equal weight in the metric averages.</p>
+          <p>Exact count accuracy is the share of recordings with the right count. Count MAE is the mean absolute difference in bird count. Mean signed error averages predicted minus true, so negative values indicate a tendency to undercount. Hungarian matching pairs anonymous cluster labels with annotation IDs to maximize correctly assigned calls, then averages that accuracy across recordings.</p>
+        </aside>
+      </section>
+
+      <section class="slide" id="results" aria-labelledby="title-results">
+        <h2 id="title-results">Average linkage counted best</h2>
+        <div class="results">
+          <div class="result-focus">
+            <p class="label">Exact count accuracy</p>
+            <strong>77.3<span>%</span></strong>
+            <div class="result-bar" aria-label="77.3 percent average linkage, 52.6 percent baseline">
+              <span></span><i></i>
+            </div>
+            <p class="baseline">52.6% <span>one-bird baseline</span></p>
+          </div>
+          <div class="result-details">
+            <div><span>Count MAE</span><b>0.247</b></div>
+            <div><span>Mean signed error</span><b>−0.062</b></div>
+            <div><span>Matched accuracy</span><b>89.4%</b></div>
+          </div>
+        </div>
+        <p class="footline">97 held-out recordings · 512-D embeddings</p>
+        <aside class="notes">
+          <p>With average linkage and a 0.25 cosine-distance threshold, exact count accuracy rose from 52.6% to 77.3%, a gain of 24.7 percentage points. Count MAE fell from 0.619 to 0.247 birds per recording, roughly 60%. Mean signed error moved from −0.619 to −0.062 birds, and Hungarian-matched assignment accuracy increased from 79.9% to 89.4%. These results use the repo’s current annotation-based benchmark.</p>
+        </aside>
+      </section>
+
+      <section class="slide" id="count-errors" aria-labelledby="title-errors">
+        <h2 id="title-errors">Where the count went wrong</h2>
+        <div class="errors-layout">
+          <figure class="count-matrix" id="count-matrix" aria-label="Confusion matrix of annotated and predicted counts"></figure>
+          <div class="errors-summary">
+            <div class="small-label">22 errors across 97 recordings</div>
+            <p><b>14</b> undercounts</p>
+            <p><b>8</b> overcounts</p>
+          </div>
+        </div>
+        <aside class="notes">
+          <p>75 recordings are on the diagonal. The model correctly counted 48 of 51 one-bird recordings, 21 of 33 two-bird recordings, and 5 of 12 three-bird recordings. There was only one four-bird recording. The negative signed error reflects a modest remaining downward bias. The small sample at higher bird counts limits what we can conclude about crowded recordings.</p>
+        </aside>
+      </section>
+
+      <section class="slide split future" id="swainsons-thrush" aria-labelledby="title-thrush">
+        <div>
+          <p class="label">Next species</p>
+          <h2 class="display" id="title-thrush">Swainson’s<br>Thrush</h2>
+          <ul class="short-list">
+            <li>Well represented in our recordings</li>
+            <li>Likely local during the survey</li>
+            <li>Distinctive vocalizations</li>
+          </ul>
+        </div>
+        <figure class="photo thrush-photo">
+          <img src="media/thrush.jpg" alt="Swainson’s Thrush on a branch with a buff eye ring and spotted breast">
+          <figcaption><i>Catharus ustulatus</i></figcaption>
+        </figure>
+        <aside class="notes">
+          <p>Try Lapp’s location-based training approach with Swainson’s Thrush. The team identified it as well represented in existing recordings and expects local birds to stay within territories over the relevant survey window. Check those assumptions with the recording metadata before training. Its distinctive, ascending song is a reason to test the species, and individual-level separability still needs to be measured.</p>
+          <p>Photo credited to Rangeley Lakes Heritage Trust, public domain, resized and cropped in the deck. <a href="https://www.fws.gov/media/swainsons-thrush-0">Photo source</a> · <a href="https://www.allaboutbirds.org/guide/Swainsons_Thrush/sounds">Cornell Lab song description</a></p>
+        </aside>
+      </section>
+
+      <section class="slide" id="limitations" aria-labelledby="title-limits">
+        <h2 id="title-limits">Limits of this benchmark</h2>
+        <div class="limit-stats">
+          <div><strong>1</strong><span>species</span></div>
+          <div><strong>97</strong><span>test recordings</span></div>
+        </div>
+        <p class="footline">Counts start from manually annotated songs.</p>
+        <aside class="notes">
+          <p>This is a small benchmark of one species. There were 1,149 embedded calls across 298 recordings before filtering out single-call recordings and splitting by location. The held-out benchmark contains 97 eligible recordings and very few high-count examples. It tests the counting stage with manual song windows. End-to-end evaluation should measure how missed or spurious HawkEars events affect count and extend the evaluation to other species.</p>
+        </aside>
+      </section>
+    </div>
+  </main>
+  <nav class="deck-controls" aria-label="Presentation controls">
+    <div class="direction-controls">
+      <button id="previous" type="button" aria-keyshortcuts="ArrowLeft">Back</button>
+      <button id="next" type="button" aria-keyshortcuts="ArrowRight">Next</button>
+      <span id="slide-number" aria-live="polite"></span>
+    </div>
+    <div class="view-controls">
+      <button id="overview-button" type="button" aria-keyshortcuts="O">Overview</button>
+      <button id="notes-button" type="button" aria-expanded="false" aria-controls="speaker-notes" aria-keyshortcuts="N">Notes</button>
+      <button id="fullscreen-button" type="button" aria-keyshortcuts="F">Fullscreen</button>
+    </div>
+  </nav>
+  <div class="progress-track" aria-hidden="true"><div id="progress"></div></div>
+  <dialog id="overview" aria-labelledby="overview-title">
+    <div class="overview-header">
+      <h2 id="overview-title">Slides</h2>
+      <form method="dialog"><button type="submit">Close</button></form>
+    </div>
+    <ol id="slide-list"></ol>
+  </dialog>
+  <aside id="speaker-notes" aria-label="Speaker notes" hidden></aside>
+  <audio id="audio-player" preload="none" hidden></audio>
+  <p id="audio-status" role="status" hidden></p>
+</body>
+</html>

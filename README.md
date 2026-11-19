@@ -14,6 +14,7 @@ The best inductive configuration on held-out locations is **average-linkage aggl
 |---|---:|---:|
 | Exact count accuracy | 52.6% | **77.3%** |
 | Count mean absolute error | 0.619 | **0.247** |
+| Mean signed error | -0.619 | **-0.062** |
 | Hungarian-matched assignment accuracy | 79.9% | **89.4%** |
 
 Relative to always predicting one individual, the best model reduces count MAE by **60%** and improves exact-count accuracy by **24.7 percentage points**.
@@ -134,6 +135,7 @@ Metrics are first calculated for each recording and then macro-averaged so that 
 
 - **Exact count accuracy:** fraction of recordings for which the predicted number of individuals equals the annotated count.
 - **Count MAE:** mean absolute difference between predicted and annotated individual counts.
+- **Mean signed error:** mean of `predicted count - true count`. Positive values indicate systematic overcounting, negative values indicate systematic undercounting, and values near zero indicate low aggregate directional bias. Unlike MAE, positive and negative errors can cancel.
 - **Hungarian-matched accuracy:** call-level clustering accuracy after optimally matching arbitrary predicted cluster IDs to annotated individual IDs with the Hungarian algorithm.
 
 Hyperparameters are selected lexicographically by development Hungarian accuracy, then exact count accuracy, then lower count MAE.
@@ -142,20 +144,21 @@ Hyperparameters are selected lexicographically by development Hungarian accuracy
 
 The table below shows the best inductive representation for each method, selected by Hungarian accuracy. All values are from the same 97 held-out recordings.
 
-| Method | Best representation | Selected setting | Count accuracy | Count MAE | Hungarian accuracy |
-|---|---|---|---:|---:|---:|
-| Agglomerative, average | Original 512-D | distance 0.25 | **77.3%** | **0.247** | **89.4%** |
-| Agglomerative, complete | Original 512-D | distance 0.35 | 71.1% | 0.309 | 87.1% |
-| Cosine adjacency | Original 512-D | similarity 0.80 | 73.2% | 0.371 | 86.8% |
-| Pairwise MLP | PCA-64 | probability 0.50 | 63.9% | 0.412 | 86.0% |
-| HDBSCAN | PCA-16 | cluster size 2, samples 1 | 45.4% | 0.742 | 75.8% |
-| Dirichlet-process GMM | PCA-16 | prior 0.01 | 1.0% | 2.753 | 40.8% |
+| Method | Best representation | Selected setting | Count accuracy | Signed error | Count MAE | Hungarian accuracy |
+|---|---|---|---:|---:|---:|---:|
+| Agglomerative, average | Original 512-D | distance 0.25 | **77.3%** | **-0.062** | **0.247** | **89.4%** |
+| Agglomerative, complete | Original 512-D | distance 0.35 | 71.1% | -0.227 | 0.309 | 87.1% |
+| Cosine adjacency | Original 512-D | similarity 0.80 | 73.2% | -0.082 | 0.371 | 86.8% |
+| Pairwise MLP | PCA-64 | probability 0.50 | 63.9% | -0.165 | 0.412 | 86.0% |
+| HDBSCAN | PCA-16 | cluster size 2, samples 1 | 45.4% | +0.392 | 0.742 | 75.8% |
+| Dirichlet-process GMM | PCA-16 | prior 0.01 | 1.0% | +2.753 | 2.753 | 40.8% |
 
 PCA-64 retains more total variance than PCA-16 but does not outperform the original embeddings. Retaining variance is not equivalent to retaining the identity-discriminative geometry needed by the clustering methods.
 
 Additional figures include:
 
 - `outputs/individual_counting_experiment/figures/hungarian_accuracy_heatmap.png`
+- `outputs/individual_counting_experiment/figures/mean_signed_error.png`
 - `outputs/individual_counting_experiment/figures/development_threshold_sensitivity.png`
 - `outputs/individual_counting_experiment/figures/best_model_true_vs_predicted_count.png`
 

@@ -29,7 +29,7 @@ This notebook benchmarks clustering-based individual counts **within each record
 - **Representations:** original 512-D embedding; PCA with 16 and 64 components; t-SNE with 5 and 16 components.
 - **Methods:** thresholded cosine graph + connected components, HDBSCAN, Dirichlet-process Gaussian mixture, average/complete agglomerative clustering, and a pairwise MLP.
 - **Selection:** thresholds and other hyperparameters are selected only on the 60% development locations. The selected configuration is then evaluated once on the 40% held-out locations.
-- **Metrics:** exact count accuracy, count mean absolute error (MAE), and call-level clustering accuracy after optimal Hungarian label matching.
+- **Metrics:** exact count accuracy, count mean absolute error (MAE), mean signed error (predicted minus true count), and call-level clustering accuracy after optimal Hungarian label matching.
 
 Important qualifications:
 
@@ -256,7 +256,7 @@ display(
     selected_configurations.sort_values(
         ["evaluation_regime", "hungarian_accuracy"], ascending=[True, False]
     ).style.format(
-        {"count_accuracy": "{:.3f}", "count_mae": "{:.3f}", "hungarian_accuracy": "{:.3f}"}
+        {"count_accuracy": "{:.3f}", "mean_signed_error": "{:+.3f}", "count_mae": "{:.3f}", "hungarian_accuracy": "{:.3f}"}
     )
 )
 """
@@ -312,7 +312,7 @@ inductive_test_results = test_results.query("evaluation_regime == 'inductive'").
 display(
     inductive_test_results.sort_values("hungarian_accuracy", ascending=False)
     .style.format(
-        {"count_accuracy": "{:.3f}", "count_mae": "{:.3f}", "hungarian_accuracy": "{:.3f}"}
+        {"count_accuracy": "{:.3f}", "mean_signed_error": "{:+.3f}", "count_mae": "{:.3f}", "hungarian_accuracy": "{:.3f}"}
     )
 )
 
@@ -321,7 +321,7 @@ display(
     test_results.query("evaluation_regime != 'inductive'")
     .sort_values("hungarian_accuracy", ascending=False)
     .style.format(
-        {"count_accuracy": "{:.3f}", "count_mae": "{:.3f}", "hungarian_accuracy": "{:.3f}"}
+        {"count_accuracy": "{:.3f}", "mean_signed_error": "{:+.3f}", "count_mae": "{:.3f}", "hungarian_accuracy": "{:.3f}"}
     )
 )
 """
@@ -332,7 +332,7 @@ display(
 metric_table = inductive_test_results.pivot_table(
     index="method",
     columns="representation",
-    values=["count_accuracy", "count_mae", "hungarian_accuracy"],
+    values=["count_accuracy", "mean_signed_error", "count_mae", "hungarian_accuracy"],
 )
 metric_table.to_csv(RESULT_DIR / "inductive_test_metric_table.csv")
 display(metric_table.style.format("{:.3f}"))
@@ -377,6 +377,28 @@ ax.set_xlabel("Representation")
 ax.set_ylabel("Method")
 fig.tight_layout()
 fig.savefig(FIGURE_DIR / "hungarian_accuracy_heatmap.png", dpi=180)
+plt.show()
+"""
+    ),
+    code(
+        r"""
+fig, ax = plt.subplots(figsize=(10, 5))
+sns.barplot(
+    data=inductive_test_results,
+    x="representation",
+    y="mean_signed_error",
+    hue="method",
+    ax=ax,
+)
+ax.axhline(0, color="black", linewidth=1)
+ax.set(
+    title="Mean signed count error on held-out locations",
+    xlabel="Representation",
+    ylabel="Mean predicted count − true count",
+)
+ax.legend(title="Method", bbox_to_anchor=(1.02, 1), loc="upper left")
+fig.tight_layout()
+fig.savefig(FIGURE_DIR / "mean_signed_error.png", dpi=180, bbox_inches="tight")
 plt.show()
 """
     ),
@@ -457,6 +479,10 @@ print(
 print(
     f"Lowest count MAE: {lowest_mae['method']} + {lowest_mae['representation']} "
     f"({lowest_mae['count_mae']:.3f})."
+)
+print(
+    f"Its mean signed error is {lowest_mae['mean_signed_error']:+.3f} "
+    "(positive means overcounting; negative means undercounting)."
 )
 print(
     f"Best Hungarian assignment accuracy: {best_assignment['method']} + "
