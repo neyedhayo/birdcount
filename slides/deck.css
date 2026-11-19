@@ -254,31 +254,135 @@ a { color: var(--green); }
 .methods p { margin-top: 11px; font-weight: 600; font-size: 29px; letter-spacing: -.055em; }
 .methods .method-choice { color: var(--green); }
 
-.tuning { display: grid; grid-template-columns: 2.1fr 1fr; gap: 48px; align-items: center; margin: 34px 0 auto; }
-.sweep-figure figcaption { margin-left: 68px; margin-bottom: 8px; }
-.sweep-figure svg, .merge-figure svg { width: 100%; display: block; overflow: visible; }
-.tuning-stat { display: grid; border-left: 1px solid var(--line); padding-left: 42px; }
-.tuning-stat strong { font-size: 138px; line-height: .99; letter-spacing: -.1em; color: var(--green); }
-.tuning-stat .label { margin-top: 15px; }
+.pairwise-slide { gap: 24px; }
+.pairwise-flow {
+  display: grid;
+  grid-template-columns: 1fr 34px 1.05fr 34px .98fr 34px 1fr;
+  align-items: start;
+  gap: 17px;
+  margin-top: 38px;
+}
+.pairwise-flow figcaption, .pairwise-outcome h3 { font-size: 23px; font-weight: 700; letter-spacing: -.04em; }
+.pairwise-flow .flow-arrow { align-self: center; }
+.pairwise-vector { margin-top: 12px; }
+.pairwise-vector span { display: block; color: var(--muted); font-size: 16px; margin-bottom: 4px; }
+.pairwise-vector .barcode { height: 27px; }
+.pairwise-network { display: block; width: 180px; height: 90px; margin: 9px 0 7px; }
+.pairwise-network path { fill: none; stroke: #9ab5a4; stroke-width: 1.7; }
+.pairwise-network circle { fill: white; stroke: var(--green); stroke-width: 2; }
+.pairwise-network circle:last-child { fill: var(--green); }
+.pairwise-score strong { display: block; color: var(--green); font-size: 76px; line-height: 1.04; letter-spacing: -.075em; margin: 13px 0 3px; }
+.pairwise-score > span { color: var(--green); font-size: 20px; font-weight: 600; }
+.pairwise-score.rejected strong, .pairwise-score.rejected > span { color: var(--rust); }
+.pairwise-outcome {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr .78fr;
+  align-items: center;
+  gap: 35px;
+  margin-top: 28px;
+  border-top: 1px solid var(--line);
+  padding-top: 25px;
+}
+.pairwise-pairs { display: flex; gap: 7px; margin-top: 13px; }
+.pairwise-pairs button { padding: 8px 9px; border: 1px solid var(--line); background: white; font: 600 15px var(--mono); white-space: nowrap; }
+.pairwise-pairs button:hover, .pairwise-pairs button[aria-pressed="true"] { background: var(--pale); border-color: var(--green); }
+#pairwise-graph { display: block; width: 100%; }
+.pairwise-edge { stroke: #96ab9d; stroke-width: 3; }
+.pairwise-edge.selected { stroke: var(--green); stroke-width: 5; }
+.pairwise-node { fill: var(--pale); stroke: var(--green); stroke-width: 1.6; }
+.pairwise-node.selected { fill: var(--green); }
+.pairwise-node.rejected { fill: var(--rust-pale); stroke: var(--rust); }
+.pairwise-node-label { fill: var(--forest); font: 600 17px var(--mono); }
+.pairwise-node-label.selected { fill: white; }
+.pairwise-node-label.rejected { fill: var(--rust); }
+.pairwise-count { display: flex; gap: 13px; align-items: center; }
+.pairwise-count strong { color: var(--green); font-size: 75px; line-height: 1; letter-spacing: -.085em; }
+.pairwise-count span { font-size: 22px; font-weight: 700; line-height: 1.1; }
+.pairwise-count small { display: block; color: var(--muted); font-size: 16px; font-weight: 500; margin-top: 5px; }
 .plot-text { fill: var(--muted); font-family: var(--mono); font-size: 17px; }
 .plot-tick { stroke: var(--line); stroke-width: 1; }
-.plot-line { fill: none; stroke: var(--green); stroke-width: 4; stroke-linejoin: round; }
-.plot-dot { fill: white; stroke: var(--green); stroke-width: 2.5; }
-.plot-selected { stroke: var(--rust); stroke-width: 2; stroke-dasharray: 6 6; }
 
-.merge-layout { display: grid; grid-template-columns: 2.2fr 1fr; align-items: center; gap: 40px; margin: 45px 0 auto; }
-.merge-controls { display: grid; gap: 7px; }
-.merge-controls button {
-  min-height: 48px;
+.linkage-slide { gap: 18px; }
+.linkage-rule { font-size: 25px; color: var(--muted); }
+.linkage-rule b { color: var(--green); }
+.linkage-lesson { display: grid; grid-template-columns: 1.35fr 1fr; gap: 37px; margin-top: 38px; }
+.merge-row {
+  display: grid;
+  grid-template-columns: 150px 1fr 85px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+}
+.merge-guide { color: var(--muted); font: 500 14px var(--mono); }
+.merge-guide span:last-child, .merge-distance { text-align: right; }
+.merge-steps { display: grid; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
+.merge-steps button {
+  width: 100%;
+  min-height: 66px;
   text-align: left;
-  padding: 10px 15px;
-  border: 1px solid var(--line);
+  border: 1px solid transparent;
+  border-top-color: var(--line);
   background: white;
   font-size: 21px;
+  font-weight: 600;
 }
-.merge-controls button:hover, .merge-controls button[aria-pressed="true"] { background: var(--pale); border-color: var(--green); }
-.merge-count { color: var(--green); font-size: 28px; font-weight: 600; margin: 17px 0 0; }
-.merge-count strong { font-size: 61px; letter-spacing: -.075em; margin-right: 4px; }
+.merge-steps button:hover, .merge-steps button[aria-pressed="true"] { background: var(--pale); border-color: var(--green); }
+.merge-groups { display: flex; align-items: center; gap: 8px; }
+.merge-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+}
+.merge-song {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: white;
+  color: var(--ink);
+  font: 600 16px var(--mono);
+}
+.merge-group.cluster-a { background: #e1eddf; border-color: var(--green); }
+.merge-group.cluster-b { background: var(--rust-pale); border-color: var(--rust); }
+.merge-group.cluster-a .merge-song { background: var(--green); color: white; }
+.merge-group.cluster-b .merge-song { background: var(--rust); color: white; }
+.merge-distance { color: var(--muted); font: 600 18px var(--mono); }
+.merge-steps button.blocked .merge-distance { color: var(--rust); }
+.merge-detail {
+  min-height: 324px;
+  border-left: 1px solid var(--line);
+  padding-left: 34px;
+}
+.merge-detail-title { margin: 0; font-size: 27px; letter-spacing: -.035em; }
+.merge-matrix {
+  width: 100%;
+  table-layout: fixed;
+  border-spacing: 4px;
+  margin: 10px 0 0 -4px;
+  font: 500 16px var(--mono);
+  text-align: center;
+}
+.merge-matrix th { padding: 5px 0; color: var(--muted); font-weight: 600; }
+.merge-matrix th.cluster-a { color: var(--green); }
+.merge-matrix th.cluster-b { color: var(--rust); }
+.merge-matrix td { height: 32px; background: var(--pale); }
+.merge-matrix td:empty { background: transparent; }
+.merge-matrix .nearest { background: var(--lime); color: var(--forest); font-weight: 700; }
+.merge-comparison { display: flex; gap: 19px; align-items: flex-start; margin-top: 14px; }
+.merge-comparison > div { display: grid; }
+.merge-comparison strong, .merge-comparison > span {
+  color: var(--green);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -.05em;
+}
+.merge-comparison.blocked > div:first-child strong, .merge-comparison.blocked > span { color: var(--rust); }
+.merge-comparison small { color: var(--muted); font-size: 16px; }
 
 .split-bar { display: grid; grid-template-columns: 3fr 2fr; gap: 6px; margin-top: 76px; }
 .split-bar > div {

@@ -2,15 +2,29 @@
 
 import json
 import subprocess
+import sys
+from itertools import combinations
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 from scipy.cluster.hierarchy import linkage
+from scipy.spatial.distance import pdist, squareform
 from sklearn.decomposition import PCA
 
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent
+sys.path.insert(0, str(ROOT))
+from individual_counting_experiment import (
+    RANDOM_STATE,
+    fit_pairwise_mlp,
+    load_embedding_data,
+    location_split,
+    pair_features,
+    pairwise_mlp_labels,
+    recording_groups,
+)
+
 MEDIA = HERE / "media"
 EXPERIMENT = ROOT / "outputs/individual_counting_experiment"
 EMBEDDINGS = ROOT / "outputs/ovenbird_embeddings"
@@ -49,6 +63,24 @@ def sample_audio(path, name, start, duration):
     ], check=True)
 
 
+def pairwise_example(metadata, embeddings, song_rows, cutoff):
+    development = location_split(metadata).eq("development")
+    groups = recording_groups(metadata, development)
+    pca = PCA(n_components=64, random_state=RANDOM_STATE)
+    pca.fit(embeddings[development])
+    features = pca.transform(embeddings).astype(np.float32)
+    model = fit_pairwise_mlp(metadata, features, groups, "pca_64")
+    songs = features[song_rows]
+    left, right = np.array(list(combinations(range(len(songs)), 2))).T
+    scores = model.estimator.predict_proba(pair_features(songs[left], songs[right]))[:, 1]
+    return {
+        "features": songs[:, ::4].round(4).tolist(),
+        "pairs": [[int(a), int(b), float(score)] for a, b, score in zip(left, right, scores)],
+        "cutoff": cutoff,
+        "labels": pairwise_mlp_labels(songs, model, cutoff).tolist(),
+    }
+
+
 def main():
     MEDIA.mkdir(exist_ok=True)
     detection_wav = ROOT / "Recordings/199823.wav"
@@ -70,11 +102,13 @@ def main():
             "wave": waveform(clip, 72),
         })
 
-    metadata = pd.read_csv(EMBEDDINGS / "ovenbird_embedding_metadata.csv")
-    annotated = metadata.loc[
-        metadata["recording_id"].eq(220875) & metadata["embedding_status"].eq("embedded")
-    ].sort_values("song_center_time")
-    vectors = np.load(EMBEDDINGS / "ovenbird_embeddings.npy")[annotated["embedding_row"].astype(int)]
+    metadata, embeddings = load_embedding_data(
+        EMBEDDINGS / "ovenbird_embedding_metadata.csv", EMBEDDINGS / "ovenbird_embeddings.npy"
+    )
+    annotated = metadata.loc[metadata["recording_id"].eq(220875)].sort_values("song_center_time")
+    song_rows = annotated["embedding_row"]
+    vectors = embeddings[song_rows]
+    song_distances = pdist(vectors, metric="cosine")
     annotated_wav = ROOT / "Recordings/220875.wav"
     annotated_samples = read_samples(annotated_wav)
     comparison_clips = []
@@ -89,13 +123,6 @@ def main():
             "features": vectors[number - 1, ::12].round(3).tolist(),
         })
 
-    grid = pd.read_csv(EXPERIMENT / "development_grid_results.csv").query(
-        "method == 'agglomerative_average' and representation == 'embedding_512'"
-    )
-    sweep = [
-        [json.loads(row.parameters)["distance_threshold"], round(row.hungarian_accuracy, 6)]
-        for row in grid.itertuples()
-    ]
     test = pd.read_csv(EXPERIMENT / "test_recording_results.csv").query(
         "method == 'agglomerative_average' and representation == 'embedding_512'"
     )
@@ -110,13 +137,16 @@ def main():
     ranked_methods = inductive.loc[best_representations].sort_values(
         "count_accuracy", ascending=False
     )
+    mlp_settings = inductive.query("method == 'pairwise_mlp' and representation == 'pca_64'").iloc[0]
+    mlp_cutoff = json.loads(mlp_settings.parameters)["probability_threshold"]
     data = {
         "fieldWave": waveform(samples, 600),
         "detectedCalls": detected_calls,
         "annotatedCalls": comparison_clips,
         "projection": PCA(n_components=2).fit_transform(vectors).round(5).tolist(),
-        "merges": linkage(vectors, method="average", metric="cosine").round(6).tolist(),
-        "sweep": sorted(sweep),
+        "songDistances": squareform(song_distances).round(6).tolist(),
+        "merges": linkage(song_distances, method="average").round(6).tolist(),
+        "pairwiseMLP": pairwise_example(metadata, embeddings, song_rows, mlp_cutoff),
         "countMatrix": count_matrix.to_numpy().tolist(),
         "methodAccuracy": [
             {

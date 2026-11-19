@@ -166,42 +166,71 @@
         </aside>
       </section>
 
-      <section class="slide" id="hyperparameters" aria-labelledby="title-hyperparameters">
-        <h2 id="title-hyperparameters">Tuning the distance threshold</h2>
-        <div class="tuning">
-          <figure class="sweep-figure">
-            <figcaption class="label">Assignment accuracy · development recordings</figcaption>
-            <svg id="sweep-chart" viewBox="0 0 750 390" role="img" aria-label="Development assignment accuracy by cosine-distance threshold for average linkage and original embeddings"></svg>
+      <section class="slide pairwise-slide" id="hyperparameters" aria-labelledby="title-pairwise-mlp">
+        <h2 id="title-pairwise-mlp">How the pairwise MLP groups songs</h2>
+        <div class="pairwise-flow">
+          <figure>
+            <figcaption>Song embeddings</figcaption>
+            <div class="pairwise-vector"><span id="pairwise-first-label"></span><div class="barcode" id="pairwise-first" aria-hidden="true"></div></div>
+            <div class="pairwise-vector"><span id="pairwise-second-label"></span><div class="barcode" id="pairwise-second" aria-hidden="true"></div></div>
           </figure>
-          <div class="tuning-stat">
-            <strong>0.25</strong>
-            <span class="label">Selected cosine distance</span>
-          </div>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <figure>
+            <figcaption>Pair features</figcaption>
+            <div class="pairwise-vector"><span>Absolute difference</span><div class="barcode" id="pairwise-difference" aria-hidden="true"></div></div>
+            <div class="pairwise-vector"><span>Elementwise product</span><div class="barcode" id="pairwise-product" aria-hidden="true"></div></div>
+          </figure>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <figure>
+            <figcaption>MLP</figcaption>
+            <svg class="pairwise-network" viewBox="0 0 180 90" aria-hidden="true">
+              <path d="M20 16L90 28L20 45L90 62L20 74L90 28L20 16L90 62L20 74M90 28L160 45L90 62" />
+              <circle cx="20" cy="16" r="7"/><circle cx="20" cy="45" r="7"/><circle cx="20" cy="74" r="7"/>
+              <circle cx="90" cy="28" r="7"/><circle cx="90" cy="62" r="7"/><circle cx="160" cy="45" r="7"/>
+            </svg>
+            <p class="small-label">Standardize → 64 → 16</p>
+          </figure>
+          <span class="flow-arrow" aria-hidden="true">→</span>
+          <figure class="pairwise-score" id="pairwise-score" aria-live="polite">
+            <figcaption>Same-bird score</figcaption>
+            <strong></strong><span></span>
+          </figure>
         </div>
+        <div class="pairwise-outcome">
+          <div>
+            <h3>Inspect any of the six pairs</h3>
+            <div class="pairwise-pairs" id="pairwise-pairs" aria-label="Song pairs"></div>
+          </div>
+          <figure>
+            <figcaption class="small-label" id="pairwise-cutoff"></figcaption>
+            <svg id="pairwise-graph" viewBox="0 0 360 88" role="img"></svg>
+          </figure>
+          <p class="pairwise-count"><strong id="pairwise-count"></strong><span>estimated singers<small>One per connected group</small></span></p>
+        </div>
+        <p class="footline">PCA-64 · same four songs from a held-out recording</p>
         <aside class="notes">
-          <p>This is one slice of the development grid, for average linkage with 512-dimensional embeddings. We ran 138 inductive settings across representations and methods. The agglomerative grid ran from 0.05 to 0.50 in steps of 0.05. Cosine graph similarity and MLP probability cutoffs ranged from 0.50 to 0.95. HDBSCAN used minimum cluster size 2 with minimum samples 1 or 2. The Dirichlet-process mixture tested concentration priors of 0.01, 0.1, 1, and 10.</p>
-          <p>We picked configurations by Hungarian-matched assignment accuracy, then exact count accuracy, then lower count MAE. Some PCA thresholds landed at the upper grid limit, so those comparisons could change with a wider sweep.</p>
+          <p>For each pair of songs in a recording, concatenate their elementwise absolute difference and product. The pair features are standardized, then passed through two ReLU layers with 64 and 16 units. The model learns from balanced same-bird and different-bird pairs from development recordings. Each strip shows a subset of feature values.</p>
+          <p>This held-out example uses the PCA-64 model and its development-selected cutoff of 0.50. Songs 1 and 3 score 0.799, and songs 2 and 4 score 0.708. The four remaining scores are below the cutoff. The two connected groups of songs give an estimated two singers. Songs can belong to the same group through a chain of links.</p>
         </aside>
       </section>
 
-      <section class="slide" id="average-linkage" aria-labelledby="title-linkage">
+      <section class="slide linkage-slide" id="average-linkage" aria-labelledby="title-linkage">
         <h2 id="title-linkage">How average linkage merges songs</h2>
-        <div class="merge-layout">
-          <figure class="merge-figure">
-            <svg id="dendrogram" viewBox="0 0 770 415" role="img" aria-label="Average-linkage dendrogram for the four songs with a cut at cosine distance 0.25"></svg>
-          </figure>
-          <div class="merge-side">
-            <div class="merge-controls" aria-label="Clustering stages">
-              <button type="button" data-merge="0">Start with 4</button>
-              <button type="button" data-merge="1">Merge 1 + 3</button>
-              <button type="button" data-merge="2">Merge 2 + 4</button>
-              <button type="button" data-merge="3">Stop at 0.25</button>
+        <p class="linkage-rule">Merge the closest clusters while their average cosine distance is below <b>0.25</b>.</p>
+        <div class="linkage-lesson">
+          <div>
+            <div class="merge-row merge-guide" aria-hidden="true">
+              <span>Step</span><span>Clusters after step</span><span>Distance</span>
             </div>
-            <p class="merge-count"><strong id="merge-count">4</strong> clusters</p>
+            <ol class="merge-steps" id="merge-steps" aria-label="Clustering steps"></ol>
           </div>
+          <figure class="merge-detail" id="merge-detail" aria-live="polite"></figure>
         </div>
+        <p class="footline">Same four songs · distances from 512-D embeddings</p>
         <aside class="notes">
-          <p>Start with one cluster per song. Average linkage computes the average of all cross-cluster cosine distances and repeatedly merges the closest available pair. In this recording songs 1 and 3 merge at 0.032, and songs 2 and 4 at 0.040. The remaining two clusters would merge at 0.317, above the 0.25 threshold. Cutting the tree there leaves two groups. The gray continuation marks that potential merge.</p>
+          <p>Each song starts in its own cluster. For any two clusters, average linkage takes the mean of the cosine distances between every song in one cluster and every song in the other. At each step, compare the current clusters and merge the closest pair if its distance is strictly below 0.25.</p>
+          <p>In this recording, songs 1 and 3 merge at 0.032. Recomputing the distances between the three remaining clusters leaves songs 2 and 4 as the closest pair at 0.040. The last two clusters have four cross-cluster song pairs. Their average distance is 0.317, so the recording stays at two clusters and the estimated count is two singers.</p>
+          <p>Click a step to inspect the distances before the merge. The table shows each candidate pair once. At the stopping step, the table expands the last candidate into its four song-to-song distances.</p>
         </aside>
       </section>
 
@@ -219,6 +248,8 @@
         </div>
         <aside class="notes">
           <p>We split by location to prevent recordings from the same location leaking across partitions. Development locations are used for tuning and pairwise-MLP training. Recordings with only one usable call are excluded. Each recording gets equal weight in the metric averages.</p>
+          <p>We ran 138 inductive settings across representations and methods. The agglomerative distance grid ran from 0.05 to 0.50 in steps of 0.05. Cosine graph similarity and MLP probability cutoffs ranged from 0.50 to 0.95. HDBSCAN used minimum cluster size 2 with minimum samples 1 or 2. The Dirichlet-process mixture tested concentration priors of 0.01, 0.1, 1, and 10.</p>
+          <p>We picked configurations by Hungarian-matched assignment accuracy, then exact count accuracy, then lower count MAE. Some PCA thresholds landed at the upper grid limit.</p>
           <p>Exact count accuracy is the share of recordings with the right count. Count MAE is the mean absolute difference in bird count. Mean signed error averages predicted minus true, so negative values indicate a tendency to undercount. Hungarian matching pairs anonymous cluster labels with annotation IDs to maximize correctly assigned calls, then averages that accuracy across recordings.</p>
         </aside>
       </section>

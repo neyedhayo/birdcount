@@ -4,7 +4,7 @@ Open `index.html` in a browser. The deck works offline with the CSS, JavaScript 
 
 - **← / →** or **Space** to advance through the deck.
 - **O** opens the slide overview. **N** shows speaker notes. **F** toggles fullscreen.
-- Click the play buttons on the detection and embedding slides to hear the examples. Click the stages on the average-linkage slide to reveal the merges.
+- Click the play buttons on the detection and embedding slides to hear the examples. Select a song pair on the MLP slide to inspect its score, or select a step on the average-linkage slide to inspect its distances.
 
 ## Add a slide
 

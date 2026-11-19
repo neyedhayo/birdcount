@@ -170,78 +170,195 @@ function drawGroups() {
   addPoints(get("group-points"), true);
 }
 
-function drawSweep() {
-  const data = birdcountData.sweep;
-  const chart = get("sweep-chart");
-  const thresholdX = threshold => 74 + (threshold - 0.05) / 0.45 * 640;
-  const scoreY = score => 309 - (score - 0.6) / 0.3 * 278;
-  for (const tick of [0.6, 0.7, 0.8, 0.9]) {
-    const y = scoreY(tick);
-    chart.append(svg("line", { x1: 74, x2: 726, y1: y, y2: y, class: "plot-tick" }));
-    chart.append(svg("text", { x: 57, y: y + 6, "text-anchor": "end", class: "plot-text" }, `${Math.round(tick * 100)}%`));
+function drawPairwiseMLP() {
+  const { features, pairs, cutoff, labels } = birdcountData.pairwiseMLP;
+  const graph = get("pairwise-graph");
+  const score = get("pairwise-score");
+  const pairList = get("pairwise-pairs");
+  const links = pairs.filter(([, , probability]) => probability >= cutoff);
+  const positions = [42, 231, 127, 316];
+  const graphLinks = links.map(([a, b]) => `${a + 1} and ${b + 1}`).join(", ");
+  graph.setAttribute("aria-label", `Song graph with links between songs ${graphLinks}`);
+  get("pairwise-cutoff").textContent = `Link when score ≥ ${cutoff.toFixed(2)}`;
+  get("pairwise-count").textContent = new Set(labels).size;
+
+  function showGraph(left, right, linked) {
+    graph.replaceChildren();
+    for (const [a, b] of links) {
+      graph.append(svg("line", {
+        x1: positions[a], x2: positions[b], y1: 45, y2: 45,
+        class: a === left && b === right ? "pairwise-edge selected" : "pairwise-edge",
+      }));
+    }
+    const emphasis = linked ? " selected" : " rejected";
+    positions.forEach((x, song) => {
+      const state = song === left || song === right ? emphasis : "";
+      graph.append(
+        svg("circle", { cx: x, cy: 45, r: 19, class: `pairwise-node${state}` }),
+        svg("text", {
+          x, y: 46, "text-anchor": "middle", "dominant-baseline": "middle",
+          class: `pairwise-node-label${state}`,
+        }, song + 1),
+      );
+    });
   }
-  for (const tick of [0.05, 0.15, 0.25, 0.35, 0.45, 0.50]) {
-    chart.append(svg("text", { x: thresholdX(tick), y: 343, "text-anchor": "middle", class: "plot-text" }, tick.toFixed(2)));
+
+  function select(index) {
+    const [left, right, probability] = pairs[index];
+    const a = features[left];
+    const b = features[right];
+    const linked = probability >= cutoff;
+
+    get("pairwise-first-label").textContent = `Song ${left + 1}`;
+    get("pairwise-second-label").textContent = `Song ${right + 1}`;
+    const vectors = [
+      ["pairwise-first", a],
+      ["pairwise-second", b],
+      ["pairwise-difference", a.map((value, i) => Math.abs(value - b[i]))],
+      ["pairwise-product", a.map((value, i) => value * b[i])],
+    ];
+    for (const [id, values] of vectors) {
+      const strip = get(id);
+      strip.replaceChildren();
+      colorEmbedding(strip, values);
+    }
+
+    score.querySelector("strong").textContent = probability.toFixed(3);
+    score.querySelector("span").textContent = linked ? "Link these songs" : "No direct link";
+    score.classList.toggle("rejected", !linked);
+    buttons.forEach((button, position) => button.setAttribute("aria-pressed", position === index));
+    showGraph(left, right, linked);
   }
-  const cut = thresholdX(0.25);
-  chart.append(svg("line", { x1: cut, x2: cut, y1: 29, y2: 309, class: "plot-selected" }));
-  const coordinates = data.map(([threshold, score]) => [thresholdX(threshold), scoreY(score)]);
-  chart.append(svg("polyline", { points: coordinates.map(pair => pair.join(",")).join(" "), class: "plot-line" }));
-  coordinates.forEach(([cx, cy], index) => {
-    chart.append(svg("circle", { cx, cy, r: data[index][0] === 0.25 ? 7 : 4, class: "plot-dot" }));
+
+  const buttons = pairs.map(([left, right], index) => {
+    const button = html("button", "", `${left + 1} + ${right + 1}`);
+    button.type = "button";
+    button.setAttribute("aria-label", `Compare songs ${left + 1} and ${right + 1}`);
+    button.addEventListener("click", () => select(index));
+    pairList.append(button);
+    return button;
   });
-  chart.append(svg("text", { x: 394, y: 380, "text-anchor": "middle", class: "plot-text" }, "Cosine-distance threshold"));
+  select(pairs.findIndex(([left, right]) => left === 0 && right === 2));
 }
 
-function renderDendrogram(stage) {
-  const chart = get("dendrogram");
-  const cut = 0.25;
-  const yAt = distance => 354 - distance / .35 * 314;
-  const leaves = [0, 2, 1, 3];
-  const leafX = [155, 290, 488, 623];
-  const clusters = [];
-  chart.replaceChildren();
+function drawLinkage() {
+  const cutoff = 0.25;
+  const { songDistances, merges } = birdcountData;
+  const clusters = songDistances.map((_, song) => [song]);
+  let active = clusters.map((_, index) => index);
+  const steps = [{ title: `Start with ${active.length}`, before: active, after: active }];
+  const name = members => members.map(song => song + 1).join(" + ");
 
-  chart.append(svg("text", { x: 14, y: 20, class: "plot-text" }, "Cosine distance"));
-  for (const tick of [0, 0.1, 0.2, 0.3]) {
-    const y = yAt(tick);
-    chart.append(svg("line", { x1: 90, x2: 715, y1: y, y2: y, class: "plot-tick" }));
-    chart.append(svg("text", { x: 72, y: y + 6, class: "plot-text", "text-anchor": "end" }, tick.toFixed(2)));
+  for (const [left, right, distance] of merges) {
+    const before = active;
+    const blocked = distance >= cutoff;
+    if (!blocked) {
+      const members = [...clusters[left], ...clusters[right]].sort((a, b) => a - b);
+      active = [...before.filter(cluster => cluster !== left && cluster !== right), clusters.length];
+      clusters.push(members);
+      active.sort((a, b) => clusters[a][0] - clusters[b][0]);
+    }
+    const title = blocked
+      ? `Stop with ${active.length}`
+      : `Merge ${name(clusters[left])} + ${name(clusters[right])}`;
+    steps.push({ title, before, after: active, pair: [left, right], distance, blocked });
+    if (blocked) break;
   }
-  leaves.forEach((call, index) => {
-    clusters[call] = [leafX[index], yAt(0)];
+
+  function meanDistance(left, right) {
+    let sum = 0;
+    for (const a of left) {
+      for (const b of right) sum += songDistances[a][b];
+    }
+    return sum / (left.length * right.length);
+  }
+
+  function makeDistanceTable(step) {
+    const crossCluster = step.blocked;
+    const precision = crossCluster ? 4 : 3;
+    const rowGroups = crossCluster
+      ? clusters[step.pair[0]].map(song => [song])
+      : step.before.map(cluster => clusters[cluster]);
+    const columnGroups = crossCluster ? clusters[step.pair[1]].map(song => [song]) : rowGroups;
+    const table = html("table", "merge-matrix");
+    table.setAttribute("aria-label", crossCluster ? "Cross-cluster song distances" : "Candidate cluster distances");
+    const header = table.createTHead().insertRow();
+    header.append(html("th", "", crossCluster ? "Song" : "Cluster"));
+    columnGroups.forEach(group => {
+      const label = html("th", crossCluster ? "cluster-b" : "", name(group));
+      label.scope = "col";
+      header.append(label);
+    });
+
+    const body = table.createTBody();
+    rowGroups.forEach((group, row) => {
+      const line = body.insertRow();
+      const label = html("th", crossCluster ? "cluster-a" : "", name(group));
+      label.scope = "row";
+      line.append(label);
+      columnGroups.forEach((other, column) => {
+        const cell = line.insertCell();
+        if (!crossCluster && column <= row) return;
+        cell.textContent = meanDistance(group, other).toFixed(precision);
+        if (!crossCluster && step.pair?.includes(step.before[row]) && step.pair.includes(step.before[column])) {
+          cell.className = "nearest";
+        }
+      });
+    });
+    return table;
+  }
+
+  function showStep(step) {
+    const detail = get("merge-detail");
+    const caption = html("figcaption");
+    const heading = step.blocked ? "Why the last merge is skipped" : step.pair ? "Closest pair before merging" : "Starting distances";
+    const subtitle = step.blocked ? "Song-to-song cosine distances" : "Cosine distance averaged across each pair of clusters";
+    caption.append(html("h3", "merge-detail-title", heading), html("p", "small-label", subtitle));
+    detail.replaceChildren(caption, makeDistanceTable(step));
+    if (!step.pair) return;
+
+    const compare = html("div", step.blocked ? "merge-comparison blocked" : "merge-comparison");
+    const distance = html("div");
+    const threshold = html("div");
+    const pairCount = clusters[step.pair[0]].length * clusters[step.pair[1]].length;
+    const distanceLabel = step.blocked ? `Mean of ${pairCount} distances` : "Closest distance";
+    distance.append(html("strong", "", step.distance.toFixed(3)), html("small", "", distanceLabel));
+    threshold.append(html("strong", "", cutoff.toFixed(3)), html("small", "", "Cutoff"));
+    compare.append(distance, html("span", "", step.blocked ? ">" : "<"), threshold);
+    detail.append(compare);
+  }
+
+  const list = get("merge-steps");
+  const buttons = steps.map(step => {
+    const row = html("li");
+    const button = html("button", step.blocked ? "merge-row blocked" : "merge-row");
+    button.type = "button";
+    button.setAttribute("aria-controls", "merge-detail");
+
+    const groups = html("span", "merge-groups");
+    const groupNames = step.after.map(index => name(clusters[index]));
+    groups.setAttribute("aria-label", `Clusters: ${groupNames.join("; ")}`);
+    groups.setAttribute("role", "img");
+    for (const index of step.after) {
+      const members = clusters[index];
+      const color = index % 2 === 0 ? "cluster-a" : "cluster-b";
+      const group = html("span", members.length === 1 ? "merge-group" : `merge-group ${color}`);
+      for (const song of members) group.append(html("span", "merge-song", song + 1));
+      groups.append(group);
+    }
+    button.append(html("span", "", step.title), groups, html("span", "merge-distance", step.distance?.toFixed(3) ?? "—"));
+    row.append(button);
+    list.append(row);
+    return button;
   });
 
-  birdcountData.merges.forEach(([first, second, distance], index) => {
-    const [leftX, leftY] = clusters[first];
-    const [rightX, rightY] = clusters[second];
-    const y = yAt(distance);
-    clusters.push([(leftX + rightX) / 2, y]);
+  function select(index) {
+    buttons.forEach((button, position) => button.setAttribute("aria-pressed", position === index));
+    showStep(steps[index]);
+  }
 
-    if (index >= stage) return;
-    const stroke = ["var(--green)", "var(--rust)", "#9ca9a0"][index];
-    chart.append(svg("path", {
-      d: `M${leftX} ${leftY} V${y} H${rightX} V${rightY}`,
-      stroke, "stroke-width": index === 2 ? 2.5 : 4,
-      "stroke-dasharray": index === 2 ? "5 5" : "none", fill: "none",
-    }));
-  });
-  if (stage === 3) {
-    const cutY = yAt(cut);
-    chart.append(svg("line", { x1: 90, x2: 715, y1: cutY, y2: cutY, class: "plot-selected" }));
-    chart.append(svg("text", { x: 714, y: cutY - 9, class: "plot-text", "text-anchor": "end" }, "0.25 cut"));
-  }
-  leaves.forEach((call, index) => {
-    const joined = index < 2 ? stage > 0 : stage > 1;
-    const color = index < 2 ? "var(--green)" : "var(--rust)";
-    const x = leafX[index];
-    chart.append(svg("circle", { cx: x, cy: yAt(0), r: 8, fill: joined ? color : "white", stroke: joined ? color : "var(--green)", "stroke-width": 2.5 }));
-    chart.append(svg("text", { x, y: 390, class: "plot-text", "text-anchor": "middle" }, `Song ${call + 1}`));
-  });
-  get("merge-count").textContent = 4 - Math.min(stage, 2);
-  for (const button of document.querySelectorAll("[data-merge]")) {
-    button.setAttribute("aria-pressed", Number(button.dataset.merge) === stage);
-  }
+  buttons.forEach((button, index) => button.addEventListener("click", () => select(index)));
+  select(steps.length - 1);
 }
 
 function drawMethodAccuracy() {
@@ -301,8 +418,8 @@ drawChallenge();
 drawAudio();
 drawEmbeddings();
 drawGroups();
-drawSweep();
-renderDendrogram(0);
+drawPairwiseMLP();
+drawLinkage();
 drawMethodAccuracy();
 drawMatrix();
 
@@ -441,10 +558,6 @@ document.addEventListener("keydown", event => {
   event.preventDefault();
   commands[key]();
 });
-
-for (const button of document.querySelectorAll("[data-merge]")) {
-  button.addEventListener("click", () => renderDendrogram(Number(button.dataset.merge)));
-}
 
 for (const button of document.querySelectorAll("[data-audio]")) {
   button.addEventListener("click", async () => {
