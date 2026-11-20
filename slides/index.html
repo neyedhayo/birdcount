@@ -248,9 +248,57 @@
         </div>
         <aside class="notes">
           <p>We split by location to prevent recordings from the same location leaking across partitions. Development locations are used for tuning and pairwise-MLP training. Recordings with only one usable call are excluded. Each recording gets equal weight in the metric averages.</p>
-          <p>We ran 138 inductive settings across representations and methods. The agglomerative distance grid ran from 0.05 to 0.50 in steps of 0.05. Cosine graph similarity and MLP probability cutoffs ranged from 0.50 to 0.95. HDBSCAN used minimum cluster size 2 with minimum samples 1 or 2. The Dirichlet-process mixture tested concentration priors of 0.01, 0.1, 1, and 10.</p>
-          <p>We picked configurations by Hungarian-matched assignment accuracy, then exact count accuracy, then lower count MAE. Some PCA thresholds landed at the upper grid limit.</p>
           <p>Exact count accuracy is the share of recordings with the right count. Count MAE is the mean absolute difference in bird count. Mean signed error averages predicted minus true, so negative values indicate a tendency to undercount. Hungarian matching pairs anonymous cluster labels with annotation IDs to maximize correctly assigned calls, then averages that accuracy across recordings.</p>
+        </aside>
+      </section>
+
+      <section class="slide tuning-slide" id="parameter-search" aria-labelledby="title-parameter-search">
+        <h2 id="title-parameter-search">Hyperparameter search</h2>
+        <p class="tuning-summary" id="tuning-summary"></p>
+        <table class="tuning-table" aria-label="Search grids and settings selected on development data">
+          <colgroup><col class="tuning-method-column"><col class="tuning-grid-column"></colgroup>
+          <colgroup span="3"></colgroup>
+          <colgroup span="2"></colgroup>
+          <thead>
+            <tr>
+              <th rowspan="2" scope="col">Method</th>
+              <th rowspan="2" scope="col">Parameter and values searched</th>
+              <th colspan="3" scope="colgroup">Selected · inductive</th>
+              <th colspan="2" scope="colgroup" class="tuning-exploratory">Selected · exploratory</th>
+            </tr>
+            <tr>
+              <th scope="col">512-D</th>
+              <th scope="col">PCA-16</th>
+              <th scope="col">PCA-64</th>
+              <th scope="col" class="tuning-exploratory">t-SNE 5</th>
+              <th scope="col" class="tuning-exploratory">t-SNE 16</th>
+            </tr>
+          </thead>
+          <tbody id="tuning-rows"></tbody>
+        </table>
+        <div class="tuning-footer">
+          <p><span class="tuning-swatch" aria-hidden="true"></span>Top inductive setting on development data</p>
+          <p>Matched accuracy ↑ <span aria-hidden="true">→</span> Exact count ↑ <span aria-hidden="true">→</span> Count MAE ↓</p>
+        </div>
+        <aside class="notes">
+          <p>For each method and input representation, choose the setting with the highest Hungarian-matched assignment accuracy on development data. Break ties with higher exact-count accuracy, then lower count mean absolute error. Highlighting applies that same ordering across the three inductive representations per method. Each method and representation’s selected setting was frozen before held-out evaluation.</p>
+          <p>512-D is the original embedding. PCA was fitted on development calls. t-SNE was fitted jointly and reported as exploratory. The agglomerative PCA choices both landed on the upper grid boundary of 0.50.</p>
+          <p>The high-level held-out comparison reports the best held-out representation for each method by matched accuracy. For example, the Pairwise MLP leads its development comparison with the 512-D input and a cutoff of 0.95, while its best held-out representation is PCA-64 with the development-selected cutoff of 0.50.</p>
+        </aside>
+      </section>
+
+      <section class="slide method-comparison" id="method-accuracy" aria-labelledby="title-method-accuracy">
+        <h2 class="display" id="title-method-accuracy">Exact-count accuracy<br> <em>by method</em></h2>
+        <div class="accuracy-chart">
+          <div class="accuracy-baseline">
+            <span class="accuracy-baseline-label">52.6% one-bird baseline</span>
+          </div>
+          <ol class="accuracy-ranking" id="accuracy-ranking" aria-label="Methods ranked by exact-count accuracy"></ol>
+        </div>
+        <p class="label" id="accuracy-sample-size"></p>
+        <aside class="notes">
+          <p>Each bar shows the percentage of held-out recordings where the method predicted the annotated number of birds. For each method, we show the inductive representation with the highest Hungarian-matched assignment accuracy on the held-out set. Hyperparameters for each method and representation were tuned on development data.</p>
+          <p>DP-GMM is the Dirichlet-process Gaussian mixture model.</p>
         </aside>
       </section>
 
@@ -282,21 +330,6 @@
         </aside>
       </section>
 
-      <section class="slide method-comparison" id="method-accuracy" aria-labelledby="title-method-accuracy">
-        <h2 class="display" id="title-method-accuracy">Exact-count accuracy<br> <em>by method</em></h2>
-        <div class="accuracy-chart">
-          <div class="accuracy-baseline">
-            <span class="accuracy-baseline-label">52.6% one-bird baseline</span>
-          </div>
-          <ol class="accuracy-ranking" id="accuracy-ranking" aria-label="Methods ranked by exact-count accuracy"></ol>
-        </div>
-        <p class="label" id="accuracy-sample-size"></p>
-        <aside class="notes">
-          <p>Each bar shows the percentage of held-out recordings where the method predicted the annotated number of birds. For each method, we show the inductive representation with the highest Hungarian-matched assignment accuracy on the held-out set. Hyperparameters for each method and representation were tuned on development data.</p>
-          <p>DP-GMM is the Dirichlet-process Gaussian mixture model.</p>
-        </aside>
-      </section>
-
       <section class="slide" id="count-errors" aria-labelledby="title-errors">
         <h2 id="title-errors">Where the count went wrong</h2>
         <div class="errors-layout">
@@ -309,6 +342,18 @@
         </div>
         <aside class="notes">
           <p>75 recordings are on the diagonal. The model correctly counted 48 of 51 one-bird recordings, 21 of 33 two-bird recordings, and 5 of 12 three-bird recordings. There was only one four-bird recording. The negative signed error reflects a modest remaining downward bias. The small sample at higher bird counts limits what we can conclude about crowded recordings.</p>
+        </aside>
+      </section>
+
+      <section class="slide" id="limitations" aria-labelledby="title-limits">
+        <h2 id="title-limits">Limits of this benchmark</h2>
+        <div class="limit-stats">
+          <div><strong>1</strong><span>species</span></div>
+          <div><strong>97</strong><span>test recordings</span></div>
+        </div>
+        <p class="footline">Counts start from manually annotated songs.</p>
+        <aside class="notes">
+          <p>This is a small benchmark of one species. There were 1,149 embedded calls across 298 recordings before filtering out single-call recordings and splitting by location. The held-out benchmark contains 97 eligible recordings and very few high-count examples. It tests the counting stage with manual song windows. End-to-end evaluation should measure how missed or spurious HawkEars events affect count and extend the evaluation to other species.</p>
         </aside>
       </section>
 
@@ -329,18 +374,6 @@
         <aside class="notes">
           <p>Try Lapp’s location-based training approach with Swainson’s Thrush. The team identified it as well represented in existing recordings and expects local birds to stay within territories over the relevant survey window. Check those assumptions with the recording metadata before training. Its distinctive, ascending song is a reason to test the species, and individual-level separability still needs to be measured.</p>
           <p>Photo credited to Rangeley Lakes Heritage Trust, public domain, resized and cropped in the deck. <a href="https://www.fws.gov/media/swainsons-thrush-0">Photo source</a> · <a href="https://www.allaboutbirds.org/guide/Swainsons_Thrush/sounds">Cornell Lab song description</a></p>
-        </aside>
-      </section>
-
-      <section class="slide" id="limitations" aria-labelledby="title-limits">
-        <h2 id="title-limits">Limits of this benchmark</h2>
-        <div class="limit-stats">
-          <div><strong>1</strong><span>species</span></div>
-          <div><strong>97</strong><span>test recordings</span></div>
-        </div>
-        <p class="footline">Counts start from manually annotated songs.</p>
-        <aside class="notes">
-          <p>This is a small benchmark of one species. There were 1,149 embedded calls across 298 recordings before filtering out single-call recordings and splitting by location. The held-out benchmark contains 97 eligible recordings and very few high-count examples. It tests the counting stage with manual song windows. End-to-end evaluation should measure how missed or spurious HawkEars events affect count and extend the evaluation to other species.</p>
         </aside>
       </section>
     </div>

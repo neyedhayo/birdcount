@@ -361,6 +361,35 @@ function drawLinkage() {
   select(steps.length - 1);
 }
 
+function drawTuningSearch() {
+  const { trials, rows } = birdcountData.tuning;
+  get("tuning-summary").textContent =
+    `${trials.inductive} inductive trials · ${trials.transductive_exploratory} exploratory trials on development data`;
+  const table = get("tuning-rows");
+
+  for (const { method, parameter, search, selected } of rows) {
+    const row = table.insertRow();
+    const label = html("th", "", method);
+    label.scope = "row";
+    row.append(label);
+
+    const grid = row.insertCell();
+    grid.className = "tuning-grid";
+    grid.append(html("span", "", parameter), html("small", "", search));
+    for (const { value, exploratory, best } of selected) {
+      const cell = row.insertCell();
+      if (exploratory) cell.className = "tuning-exploratory";
+      if (best) {
+        const highlight = html("strong", "tuning-best", value);
+        highlight.title = "Top inductive setting on development data";
+        cell.append(highlight);
+      } else {
+        cell.textContent = value;
+      }
+    }
+  }
+}
+
 function drawMethodAccuracy() {
   const ranking = get("accuracy-ranking");
   const methods = birdcountData.methodAccuracy;
@@ -420,6 +449,7 @@ drawEmbeddings();
 drawGroups();
 drawPairwiseMLP();
 drawLinkage();
+drawTuningSearch();
 drawMethodAccuracy();
 drawMatrix();
 

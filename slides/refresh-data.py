@@ -17,6 +17,7 @@ ROOT = HERE.parent
 sys.path.insert(0, str(ROOT))
 from individual_counting_experiment import (
     RANDOM_STATE,
+    configuration_score,
     fit_pairwise_mlp,
     load_embedding_data,
     location_split,
@@ -37,6 +38,15 @@ METHOD_LABELS = {
     "hdbscan": "HDBSCAN",
     "dpgmm": "DP-GMM",
 }
+TUNING_PARAMETERS = {
+    "cosine_adjacency": ("threshold", "Cosine similarity threshold"),
+    "agglomerative_average": ("distance_threshold", "Cosine distance cutoff"),
+    "agglomerative_complete": ("distance_threshold", "Cosine distance cutoff"),
+    "pairwise_mlp": ("probability_threshold", "Same-bird probability cutoff"),
+    "hdbscan": ("min_samples", "Min samples"),
+    "dpgmm": ("concentration_prior", "Concentration prior"),
+}
+TUNING_REPRESENTATIONS = ("embedding_512", "pca_16", "pca_64", "tsne_5", "tsne_16")
 
 
 def read_samples(path):
@@ -79,6 +89,45 @@ def pairwise_example(metadata, embeddings, song_rows, cutoff):
         "cutoff": cutoff,
         "labels": pairwise_mlp_labels(songs, model, cutoff).tolist(),
     }
+
+
+def tuning_summary():
+    grid = pd.read_csv(EXPERIMENT / "development_grid_results.csv")
+    selected = pd.read_csv(EXPERIMENT / "selected_configurations.csv")
+    rows = []
+    for method, (parameter, parameter_label) in TUNING_PARAMETERS.items():
+        trials = grid.loc[grid["method"].eq(method), "parameters"].map(json.loads)
+        values = sorted({trial[parameter] for trial in trials})
+        chosen = selected.loc[selected["method"].eq(method)].set_index("representation")
+        best_inductive = max(
+            chosen.loc[chosen["evaluation_regime"].eq("inductive")].iterrows(),
+            key=lambda row: configuration_score(row[1]),
+        )[0]
+
+        # The threshold grids share a fixed step. List irregular grids explicitly.
+        threshold = parameter.endswith("threshold")
+        number_format = ".2f" if threshold else "g"
+        search = ", ".join(format(value, number_format) for value in values)
+        if threshold and len(values) > 2 and np.allclose(np.diff(values), values[1] - values[0]):
+            search = f"{values[0]:.2f}–{values[-1]:.2f} · step {values[1] - values[0]:.2f}"
+        if method == "hdbscan":
+            fixed_sizes = sorted({trial["min_cluster_size"] for trial in trials})
+            search += " · cluster size " + ", ".join(map(str, fixed_sizes))
+
+        rows.append({
+            "method": METHOD_LABELS[method],
+            "parameter": parameter_label,
+            "search": search,
+            "selected": [
+                {
+                    "value": format(json.loads(chosen.loc[representation, "parameters"])[parameter], number_format),
+                    "exploratory": chosen.loc[representation, "evaluation_regime"] != "inductive",
+                    "best": representation == best_inductive,
+                }
+                for representation in TUNING_REPRESENTATIONS
+            ],
+        })
+    return {"trials": grid["evaluation_regime"].value_counts().to_dict(), "rows": rows}
 
 
 def main():
@@ -147,6 +196,7 @@ def main():
         "songDistances": squareform(song_distances).round(6).tolist(),
         "merges": linkage(song_distances, method="average").round(6).tolist(),
         "pairwiseMLP": pairwise_example(metadata, embeddings, song_rows, mlp_cutoff),
+        "tuning": tuning_summary(),
         "countMatrix": count_matrix.to_numpy().tolist(),
         "methodAccuracy": [
             {
